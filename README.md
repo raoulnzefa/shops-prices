@@ -1,1 +1,1 @@
-# shop-prices
+# Shop Prices with Vue.js
