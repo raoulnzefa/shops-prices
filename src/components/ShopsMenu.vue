@@ -66,11 +66,9 @@ export default {
 .shop-block {
   background-color: #f7f7f7;
   margin: 10px;
-  width: 250px;
-  height: min-content;
-  min-width: 245px;
+  min-width: 250px;
   position: fixed;
-  box-shadow: 0 0 2px 1px #aba9a9;
+  box-shadow: 2px 2px 2px -1px #aba9a9;
 }
 .shop-block__header {
   display: flex;
