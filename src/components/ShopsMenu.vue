@@ -1,0 +1,102 @@
+<template>
+  <nav class="shop-block">
+    <div class="shop-block__header">
+      <h3 class="shop-block__header-title">Магазины</h3>
+    </div>
+    <div class="shop-block__content">
+      <ul class="shop-list">
+        <li class="shop-list__item">
+          <a href="beru" class="shop-info__title beru-color">БЕРУ</a>
+          <div class="shop-info__meta">
+            <span class="shop-info__meta-item">Обновлено: 31.03.2020 в 14:05:02</span>
+          </div>
+        </li>
+        <li class="shop-list__item">
+          <a href="wildberries" class="shop-info__title wb-color">WILDBERRIES</a>
+          <div class="shop-info__meta">
+            <span class="shop-info__meta-item">Обновлено: 31.03.2020 в 14:16:47</span>
+          </div>
+        </li>
+        <li class="shop-list__item">
+          <a href="t-mall" class="shop-info__title tmall-color">T-MALL</a>
+          <div class="shop-info__meta">
+            <span class="shop-info__meta-item">Обновлено: 31.03.2020 в 14:20:58</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</template>
+
+<script>
+export default {
+  name: 'ShopsMenu',
+}
+</script>
+
+<style scoped>
+.shop-block {
+  background-color: #f7f7f7;
+  margin: 10px;
+  width: 250px;
+  height: min-content;
+  min-width: 245px;
+  position: fixed;
+  box-shadow: 0 0 2px 1px #aba9a9;
+}
+.shop-block__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 20px;
+  padding: 19px 0 4px;
+  border-bottom: 1px solid #333333;
+}
+.shop-block__header-title {
+  font-weight: 500;
+  font-family: 'Fira Sans',sans-serif;
+  font-size: 18px;
+}
+.shop-block__content {
+  padding: 10px 20px 0 20px;
+  overflow: hidden;
+}
+.shop-list {
+  margin: 0 0 20px 0;
+  padding: 0;
+  list-style: none;
+}
+.shop-list__item {
+  position: relative;
+  box-sizing: border-box;
+  border-bottom: 1px solid #9c9c9c;
+  padding: 9px 0 4px;
+}
+.shop-info__title {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  vertical-align: top;
+  white-space: normal;
+  font-weight: 700;
+  font-size: 14px;
+  margin: 0 0 5px 0;
+  padding: 5px 10px;
+  word-break: break-word;
+  font-family: 'Fira Sans',sans-serif;
+}
+.beru-color {
+  background-color: #6F3DF8;
+}
+.wb-color {
+  background-color: #EE3384;
+}
+.tmall-color {
+  background-color: #CE1037;
+}
+.shop-info__meta-item {
+  font-family: 'Fira Sans',sans-serif;
+  font-size: 13px;
+  color: #1d1d1d;
+}
+</style>
