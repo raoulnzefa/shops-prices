@@ -1,0 +1,91 @@
+{
+  "shops-info": [
+    {
+      "id": 0,
+      "name": "БЕРУ",
+      "time": "31.03.2020 15:05:02"
+    },
+    {
+      "id": 1,
+      "name": "WILDBERRIES",
+      "time": "31.03.2020 15:17:15"
+    },
+    {
+      "id": 2,
+      "name": "T-MALL",
+      "time": "31.03.2020 15:20:59"
+    }
+  ],
+  "beru-goods": {
+    "new_goods": [],
+    "discount_goods": [
+      {
+        "id": 0,
+        "name": "Кофемашина Nivona CafeRomatica 530 серый",
+        "price": 35990,
+        "old_price": 43990,
+        "discount": 8000,
+        "url": "https://beru.ru/product/kofemashina-nivona-caferomatica-530-seryi/100597623905"
+      },
+      {
+        "id": 1,
+        "name": "Кофеварка рожковая Oursson EM1500 ivory",
+        "price": 5030,
+        "old_price": 6470,
+        "discount": 1440,
+        "url": "https://beru.ru/product/kofevarka-rozhkovaia-oursson-em1500-ivory/100802470439"
+      }
+    ]
+  },
+  "wildberries-goods": {
+    "new_goods": [
+      {
+        "id": 0,
+        "name": "Thomson / Телевизор T32RTE1160",
+        "price": 6429,
+        "url": "https://www.wildberries.ru/catalog/6434671/detail.aspx"
+      },
+      {
+        "id": 1,
+        "name": "Samsung / Телевизор UE32M5500AU",
+        "price": 24990,
+        "url": "https://www.wildberries.ru/catalog/6885303/detail.aspx"
+      }
+    ],
+    "discount_goods": []
+  },
+  "tmall-goods": {
+    "new_goods": [
+      {
+        "id": 0,
+        "name": "Электрический чайник Scarlett SC-EK21S59 1,8 л",
+        "price": 952,
+        "url": "https://tmall.aliexpress.com/item/Electric-kettle-Scarlett-SC-EK21S59-1-8-l-kettle-electric-kettles-electric-kettle-household-appliances-for/4000322817250.html"
+      },
+      {
+        "id": 1,
+        "name": "Беспроводные наушники XIAOMI Mi Sports Bluetooth Earphones, черные",
+        "price": 2990,
+        "url": "https://tmall.aliexpress.com/item/Wireless-headphones-Xiaomi-Mi-sports-Bluetooth-earphones-Black/10000003099213.html"
+      }
+    ],
+    "discount_goods": [
+      {
+        "id": 0,
+        "name": "Увлажнитель воздуха Scarlett SC-AH986M18 300 млч",
+        "price": 1691,
+        "old_price": 1700,
+        "discount": 9,
+        "url": "https://tmall.aliexpress.com/item/Air-humidifier-Scarlett-sc-ah986m18-300-ml-H-air-humidifier-for-home-air-humidifiers-home-appliances/4000149727853.html"
+      },
+      {
+        "id": 1,
+        "name": "Машина шлифовальная угловая Кратон AMG-1000-125",
+        "price": 3190,
+        "old_price": 3500,
+        "discount": 310,
+        "url": "https://tmall.aliexpress.com/item/Angle-grinding-machine-Kraton-AMG-1000-125/1000004184003.html"
+      }
+    ]
+  }
+}

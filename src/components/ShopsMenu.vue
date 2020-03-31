@@ -8,19 +8,19 @@
         <li class="shop-list__item">
           <a href="beru" class="shop-info__title beru-color">БЕРУ</a>
           <div class="shop-info__meta">
-            <span class="shop-info__meta-item">Обновлено: 31.03.2020 в 14:05:02</span>
+            <span class="shop-info__meta-item">Обновлено: {{ beruTime.replace(' ', ' в ') }}</span>
           </div>
         </li>
         <li class="shop-list__item">
           <a href="wildberries" class="shop-info__title wb-color">WILDBERRIES</a>
           <div class="shop-info__meta">
-            <span class="shop-info__meta-item">Обновлено: 31.03.2020 в 14:16:47</span>
+            <span class="shop-info__meta-item">Обновлено: {{ wildberriesTime.replace(' ', ' в ') }}</span>
           </div>
         </li>
         <li class="shop-list__item">
           <a href="t-mall" class="shop-info__title tmall-color">T-MALL</a>
           <div class="shop-info__meta">
-            <span class="shop-info__meta-item">Обновлено: 31.03.2020 в 14:20:58</span>
+            <span class="shop-info__meta-item">Обновлено: {{ tmallTime.replace(' ', ' в ') }}</span>
           </div>
         </li>
       </ul>
@@ -29,8 +29,36 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'ShopsMenu',
+  data() {
+    return {
+      beruTime: '...',
+      wildberriesTime: '...',
+      tmallTime: '...'
+    }
+  },
+  mounted() {
+    axios
+      .get('http://localhost:3000/shops-info')
+      .then(response => {
+        response.data.forEach(shop => {
+          switch(shop.id) {
+            case 0:
+              this.beruTime = shop.time;
+              break;
+            case 1:
+              this.wildberriesTime = shop.time;
+              break;
+            case 2:
+              this.tmallTime = shop.time;
+              break;
+          }
+        })
+      })
+  }
 }
 </script>
 
