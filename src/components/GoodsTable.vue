@@ -1,59 +1,69 @@
 <template>
   <main class="table-block">
-    <table class="price-change">
-      <caption>
-        <span v-bind:class="[`caption-shop ${$route.params.name}-color`]">{{ shopName }}</span>
-        <span class="caption-text">Изменения цен <i aria-hidden="true" class="fa fa-chevron-down"></i></span>
-      </caption>
-      <tbody>
-        <tr v-if="discountGoods.length">
-          <th>Товар</th>
-          <th>Новая цена</th>
-          <th>Старая цена</th>
-          <th>Скидка</th>
-        </tr>
-        <tr v-else class="prod-empty">
-           <td>Скидок пока нет, ожидайте обновления базы!</td>
-        </tr>
-        <tr v-for="product in discountGoods" :key="product.id">
-          <td>
-            <a v-bind:href="product.url" target="_blank" rel="noreferrer noopener">{{ product.name }}</a>
-          </td>
-          <td>{{ product.price }}</td>
-          <td>{{ product.old_price }}</td>
-          <td>{{ product.discount }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <table class="new-goods">
-      <caption>
-        <span v-bind:class="[`caption-shop ${$route.params.name}-color`]">{{ shopName }}</span>
-        <span class="caption-text">Новые товары <i aria-hidden="true" class="fa fa-chevron-down"></i></span>
-      </caption>
-      <tbody>
-        <tr v-if="newGoods.length">
-          <th>Товар</th>
-          <th>Цена</th>
-        </tr>
-        <tr v-else class="prod-empty">
-          <td>Новых товаров нет, ожидайте обновления базы!</td>
-        </tr>
-        <tr v-for="product in newGoods" :key="product.id">
-          <td><a v-bind:href="product.url" target="_blank" rel="noreferrer noopener">{{ product.name }}</a></td>
-          <td>{{ product.price }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div v-if="loading" class="spinner-wrapper">
+      <Spinner />
+    </div>
+    <div v-if="!loading">
+      <table class="price-change">
+        <caption>
+          <span v-bind:class="[`caption-shop ${$route.params.name}-color`]">{{ shopName }}</span>
+          <span class="caption-text">Изменения цен <i aria-hidden="true" class="fa fa-chevron-down"></i></span>
+        </caption>
+        <tbody>
+          <tr v-if="discountGoods.length">
+            <th>Товар</th>
+            <th>Новая цена</th>
+            <th>Старая цена</th>
+            <th>Скидка</th>
+          </tr>
+          <tr v-else class="prod-empty">
+             <td>Скидок пока нет, ожидайте обновления базы!</td>
+          </tr>
+          <tr v-for="product in discountGoods" :key="product.id">
+            <td>
+              <a v-bind:href="product.url" target="_blank" rel="noreferrer noopener">{{ product.name }}</a>
+            </td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.old_price }}</td>
+            <td>{{ product.discount }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="new-goods">
+        <caption>
+          <span v-bind:class="[`caption-shop ${$route.params.name}-color`]">{{ shopName }}</span>
+          <span class="caption-text">Новые товары <i aria-hidden="true" class="fa fa-chevron-down"></i></span>
+        </caption>
+        <tbody>
+          <tr v-if="newGoods.length">
+            <th>Товар</th>
+            <th>Цена</th>
+          </tr>
+          <tr v-else class="prod-empty">
+            <td>Новых товаров нет, ожидайте обновления базы!</td>
+          </tr>
+          <tr v-for="product in newGoods" :key="product.id">
+            <td><a v-bind:href="product.url" target="_blank" rel="noreferrer noopener">{{ product.name }}</a></td>
+            <td>{{ product.price }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </main>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
+import Spinner from './Spinner'
 
 export default {
   name: 'GoodsTable',
+  components: {
+    Spinner
+  },
   data() {
     return {
+      loading: false,
       shopName: '...',
       discountGoods: [],
       newGoods: []
@@ -67,9 +77,11 @@ export default {
   },
   methods: {
     fetchData() {
+      this.loading = true
       axios
         .get(`http://localhost:3000/${this.$route.params.name}-goods`)
         .then(response => {
+          this.loading = false
           const { discount_goods, new_goods, name } = response.data;
   
           this.shopName = name;
@@ -82,6 +94,11 @@ export default {
 </script>
 
 <style scoped>
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
 .table-block {
   margin: 10px 0 10px 270px;
   width: 100%;
