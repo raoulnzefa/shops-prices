@@ -1,19 +1,17 @@
 <template>
   <div id="app">
     <ShopsMenu />
-    <GoodsTable />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import ShopsMenu from './components/ShopsMenu.vue'
-import GoodsTable from './components/GoodsTable.vue'
 
 export default {
   name: 'App',
   components: {
-    ShopsMenu,
-    GoodsTable
+    ShopsMenu
   }
 }
 </script>

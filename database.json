@@ -17,6 +17,7 @@
     }
   ],
   "beru-goods": {
+    "name": "БЕРУ",
     "new_goods": [],
     "discount_goods": [
       {
@@ -38,6 +39,7 @@
     ]
   },
   "wildberries-goods": {
+    "name": "WILDBERRIES",
     "new_goods": [
       {
         "id": 0,
@@ -54,7 +56,8 @@
     ],
     "discount_goods": []
   },
-  "tmall-goods": {
+  "t-mall-goods": {
+    "name": "T-MALL",
     "new_goods": [
       {
         "id": 0,

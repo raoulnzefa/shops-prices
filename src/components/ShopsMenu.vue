@@ -6,19 +6,19 @@
     <div class="shop-block__content">
       <ul class="shop-list">
         <li class="shop-list__item">
-          <a href="beru" class="shop-info__title beru-color">БЕРУ</a>
+          <router-link to="/shop/beru" class="shop-info__title beru-color">БЕРУ</router-link>
           <div class="shop-info__meta">
             <span class="shop-info__meta-item">Обновлено: {{ beruTime.replace(' ', ' в ') }}</span>
           </div>
         </li>
         <li class="shop-list__item">
-          <a href="wildberries" class="shop-info__title wb-color">WILDBERRIES</a>
+          <router-link to="/shop/wildberries" class="shop-info__title wildberries-color">WILDBERRIES</router-link>
           <div class="shop-info__meta">
             <span class="shop-info__meta-item">Обновлено: {{ wildberriesTime.replace(' ', ' в ') }}</span>
           </div>
         </li>
         <li class="shop-list__item">
-          <a href="t-mall" class="shop-info__title tmall-color">T-MALL</a>
+          <router-link to="/shop/t-mall" class="shop-info__title t-mall-color">T-MALL</router-link>
           <div class="shop-info__meta">
             <span class="shop-info__meta-item">Обновлено: {{ tmallTime.replace(' ', ' в ') }}</span>
           </div>
@@ -116,10 +116,10 @@ export default {
 .beru-color {
   background-color: #6F3DF8;
 }
-.wb-color {
+.wildberries-color {
   background-color: #EE3384;
 }
-.tmall-color {
+.t-mall-color {
   background-color: #CE1037;
 }
 .shop-info__meta-item {

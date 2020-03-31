@@ -2,7 +2,7 @@
   <main class="table-block">
     <table class="price-change">
       <caption>
-        <span class="caption-shop wb-color">WILDBERRIES</span>
+        <span v-bind:class="[`caption-shop ${$route.params.name}-color`]">{{ shopName }}</span>
         <span class="caption-text">Изменения цен <i aria-hidden="true" class="fa fa-chevron-down"></i></span>
       </caption>
       <tbody>
@@ -16,7 +16,9 @@
            <td>Скидок пока нет, ожидайте обновления базы!</td>
         </tr>
         <tr v-for="product in discountGoods" :key="product.id">
-          <td><a v-bind:href="product.url" target="_blank" rel="noreferrer noopener">{{ product.name }}</a></td>
+          <td>
+            <a v-bind:href="product.url" target="_blank" rel="noreferrer noopener">{{ product.name }}</a>
+          </td>
           <td>{{ product.price }}</td>
           <td>{{ product.old_price }}</td>
           <td>{{ product.discount }}</td>
@@ -25,7 +27,7 @@
     </table>
     <table class="new-goods">
       <caption>
-        <span class="caption-shop wb-color">WILDBERRIES</span>
+        <span v-bind:class="[`caption-shop ${$route.params.name}-color`]">{{ shopName }}</span>
         <span class="caption-text">Новые товары <i aria-hidden="true" class="fa fa-chevron-down"></i></span>
       </caption>
       <tbody>
@@ -52,32 +54,34 @@ export default {
   name: 'GoodsTable',
   data() {
     return {
+      shopName: '...',
       discountGoods: [],
       newGoods: []
     }
   },
-  mounted() {
-    axios
-      .get('http://localhost:3000/tmall-goods')
-      .then(response => {
-        const { new_goods, discount_goods } = response.data;
-        this.newGoods = new_goods;
-        this.discountGoods = discount_goods;
-      })
-  }
+  created() {
+    this.fetchData();
+  },
+  watch: {
+    $route: 'fetchData'
+  },
+  methods: {
+    fetchData() {
+      axios
+        .get(`http://localhost:3000/${this.$route.params.name}-goods`)
+        .then(response => {
+          const { discount_goods, new_goods, name } = response.data;
+  
+          this.shopName = name;
+          this.discountGoods = discount_goods;
+          this.newGoods = new_goods;
+        })
+    }
+  },
 }
 </script>
 
 <style scoped>
-.beru-color {
-  background-color: #6F3DF8;
-}
-.wb-color {
-  background-color: #EE3384;
-}
-.tmall-color {
-  background-color: #CE1037;
-}
 .table-block {
   margin: 10px 0 10px 270px;
   width: 100%;
@@ -163,5 +167,14 @@ tr.prod-empty td {
 .new-goods td a {
   color: #1c5222;
   text-decoration: none;
+}
+.beru-color {
+  background-color: #6F3DF8;
+}
+.wildberries-color {
+  background-color: #EE3384;
+}
+.t-mall-color {
+  background-color: #CE1037;
 }
 </style>
