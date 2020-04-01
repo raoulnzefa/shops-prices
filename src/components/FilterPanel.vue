@@ -211,34 +211,28 @@ button.filter-item:active {
 .checkbox input {
   display: none;
 }
- input:checked + .checkbox__text {
+input:checked + .checkbox__text {
   background: #9FD468;
   color: white;
 }
 .filter-list li {
   height: 30px;
 }
-.checkbox__text{
+.checkbox__text {
   padding: 6px 10px;
   font-family: sans-serif;
   cursor: pointer;
   display: block;
   margin: 0;
 }
-.checkbox__text:hover{
+.checkbox__text:hover {
   background: grey;
   color: white;
-}
-.active {
-  display: block;
 }
 .filter-active {
   border-color: #39c522;
 }
 .filter-active span {
   color: #2faf3e;
-}
-.filter-item-hide {
-  display: none;
 }
 </style>
