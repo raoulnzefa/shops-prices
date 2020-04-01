@@ -1,6 +1,10 @@
 <template>
   <main class="table-block">
-    <FilterPanel />
+    <FilterPanel
+      v-bind:goodsFiltering="goodsFiltering"
+      v-bind:discountGoods="discountGoods"
+      v-bind:newGoods="newGoods"
+    />
     <div v-if="loading" class="spinner-wrapper">
       <Spinner />
     </div>
@@ -20,7 +24,7 @@
           <tr v-else class="prod-empty">
              <td>Скидок пока нет, ожидайте обновления базы!</td>
           </tr>
-          <tr v-for="product in discountGoods" :key="product.id">
+          <tr v-for="product in filteredDiscountGoods" :key="product.id">
             <td>
               <a v-bind:href="product.url" target="_blank" rel="noreferrer noopener">{{ product.name }}</a>
             </td>
@@ -43,7 +47,7 @@
           <tr v-else class="prod-empty">
             <td>Новых товаров нет, ожидайте обновления базы!</td>
           </tr>
-          <tr v-for="product in newGoods" :key="product.id">
+          <tr v-for="product in filteredNewGoods" :key="product.id">
             <td><a v-bind:href="product.url" target="_blank" rel="noreferrer noopener">{{ product.name }}</a></td>
             <td>{{ product.price }}</td>
           </tr>
@@ -69,14 +73,16 @@ export default {
       loading: false,
       shopName: '...',
       discountGoods: [],
-      newGoods: []
+      filteredDiscountGoods: [],
+      newGoods: [],
+      filteredNewGoods: [],
     }
   },
   created() {
     this.fetchData();
   },
   watch: {
-    $route: 'fetchData'
+    $route: 'fetchData',
   },
   methods: {
     fetchData() {
@@ -88,9 +94,17 @@ export default {
           const { discount_goods, new_goods, name } = response.data;
   
           this.shopName = name;
-          this.discountGoods = discount_goods;
-          this.newGoods = new_goods;
+          this.discountGoods = this.filteredDiscountGoods = discount_goods;
+          this.newGoods = this.filteredNewGoods = new_goods;
         })
+    },
+    goodsFiltering(goods, name, selectedFilters) {
+      this[name] = goods.filter(product => {
+        if (selectedFilters.some(elem => product.name.includes(elem))) {
+          return false
+        }
+        return true
+      })
     }
   },
 }
