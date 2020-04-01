@@ -12,9 +12,12 @@
       <table class="price-change">
         <caption>
           <span v-bind:class="[`caption-shop ${$route.params.name}-color`]">{{ shopName }}</span>
-          <span class="caption-text">Изменения цен <i aria-hidden="true" class="fa fa-chevron-down"></i></span>
+          <span class="caption-text">Изменения цен</span>
+          <button v-on:click="discountGoodsShown = !discountGoodsShown">
+            <i aria-hidden="true" v-bind:class="[ discountGoodsShown ? 'fa fa-chevron-down' : 'fa fa-chevron-up' ]"></i>
+          </button>
         </caption>
-        <tbody>
+        <tbody v-if="discountGoodsShown">
           <tr v-if="discountGoods.length">
             <th>Товар</th>
             <th>Новая цена</th>
@@ -37,9 +40,12 @@
       <table class="new-goods">
         <caption>
           <span v-bind:class="[`caption-shop ${$route.params.name}-color`]">{{ shopName }}</span>
-          <span class="caption-text">Новые товары <i aria-hidden="true" class="fa fa-chevron-down"></i></span>
+          <span class="caption-text">Новые товары</span>
+          <button v-on:click="newGoodsShown = !newGoodsShown">
+            <i aria-hidden="true" v-bind:class="[ newGoodsShown ? 'fa fa-chevron-down' : 'fa fa-chevron-up' ]"></i>
+          </button>
         </caption>
-        <tbody>
+        <tbody v-if="newGoodsShown">
           <tr v-if="newGoods.length">
             <th>Товар</th>
             <th>Цена</th>
@@ -72,6 +78,8 @@ export default {
     return {
       loading: false,
       shopName: '...',
+      discountGoodsShown: true,
+      newGoodsShown: true,
       discountGoods: [],
       filteredDiscountGoods: [],
       newGoods: [],
@@ -144,6 +152,14 @@ table caption .caption-text {
   font-weight: 500;
   font-family: 'Fira Sans',sans-serif;
   display: block;
+}
+table caption button {
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  outline: none;
+  cursor: pointer;
+  margin-left: 6px;
 }
 table caption .caption-shop {
   color: white;

@@ -12,19 +12,23 @@
         v-model="filterInputChange"
       >
       <div class="filter-input__buttons-block">
-          <button
-            class="filter-input__reset-button"
-            v-on:click="resetInput"
-            v-if="filterInputChange.length"
+        <button
+          class="filter-input__reset-button"
+          v-on:click="resetInput"
+          v-if="filterInputChange.length"
+        >
+          <i class="fa fa-times-circle" aria-hidden="true"></i>
+        </button>
+        <button
+          class="filter-input__downshift-button"
+          v-on:click="dropdownIsShown = !dropdownIsShown"
+        >
+          <i
+            v-bind:class="[ dropdownIsShown ? 'fa fa-chevron-circle-down' : 'fa fa-chevron-circle-up' ]"
+            aria-hidden="true"
           >
-            <i class="fa fa-times-circle" aria-hidden="true"></i>
-          </button>
-          <button
-            class="filter-input__downshift-button"
-            v-on:click="dropdownIsShown = !dropdownIsShown"
-          >
-            <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
-          </button>
+          </i>
+        </button>
       </div>
       <ul v-if="dropdownIsShown" class="filter-list">
         <li v-for="item in filterSearchItems" :key="item">
