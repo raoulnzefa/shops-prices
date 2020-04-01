@@ -187,13 +187,13 @@ button.filter-item:active {
 	position: relative;
 	font-family: sans-serif;
 	width: 200px;
-    border: 1px solid grey;
-    height: 30px;
-    box-sizing: border-box;
-    padding: 6px 45px 6px 10px;
-    background-color: white;
-    outline: none;
-    font-size: 16px;
+  border: 1px solid grey;
+  height: 30px;
+  box-sizing: border-box;
+  padding: 6px 45px 6px 10px;
+  background-color: white;
+  outline: none;
+  font-size: 16px;
 }
 .filter-list {
   list-style: none;
@@ -216,7 +216,7 @@ button.filter-item:active {
   color: white;
 }
 .filter-list li {
-	height: 30px;
+  height: 30px;
 }
 .checkbox__text{
   padding: 6px 10px;
@@ -230,7 +230,7 @@ button.filter-item:active {
   color: white;
 }
 .active {
-	display: block;
+  display: block;
 }
 .filter-active {
   border-color: #39c522;
