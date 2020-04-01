@@ -1,5 +1,6 @@
 <template>
   <main class="table-block">
+    <FilterPanel />
     <div v-if="loading" class="spinner-wrapper">
       <Spinner />
     </div>
@@ -55,11 +56,13 @@
 <script>
 import axios from 'axios'
 import Spinner from './Spinner'
+import FilterPanel from './FilterPanel'
 
 export default {
   name: 'GoodsTable',
   components: {
-    Spinner
+    Spinner,
+    FilterPanel
   },
   data() {
     return {
