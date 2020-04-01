@@ -184,9 +184,9 @@ button.filter-item:active {
   margin: 0 6px;
 }
 .filter-placeholder {
-	position: relative;
-	font-family: sans-serif;
-	width: 200px;
+  position: relative;
+  font-family: sans-serif;
+  width: 200px;
   border: 1px solid grey;
   height: 30px;
   box-sizing: border-box;
