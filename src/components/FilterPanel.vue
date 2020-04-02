@@ -67,6 +67,13 @@ export default {
   created() {
     document.addEventListener('click', event => {
       const target = event.target;
+      // get rid of this condition
+      if (
+        target.className === 'filter-input__reset-button'
+        || target.className === 'fa fa-times-circle'
+      ) {
+        return null
+      }
       if (
         !this.$refs['filter-input'].contains(target)
         && this.dropdownIsShown
