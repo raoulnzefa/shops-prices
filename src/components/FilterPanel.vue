@@ -72,6 +72,9 @@ export default {
       })
   },
   watch: {
+    $route() {
+      this.resetFilter()
+    },
     filterInputChange(input) {
       this.dropdownIsShown = true;
       this.filterSearchItems = this.filterData.filter(item => {
