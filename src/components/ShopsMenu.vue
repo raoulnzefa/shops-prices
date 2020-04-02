@@ -12,7 +12,7 @@
           >
             <div>
               <a :href="href" @click="navigate" class="shop-info__title beru-color">БЕРУ</a>
-              <button v-if="isActive" class="update-button" v-on:click="updateTables">
+              <button v-if="isActive" class="update-button" v-on:click="throttledUpdateTables">
                 <i class="fa fa-refresh" aria-hidden="true"></i>
               </button>
             </div>
@@ -28,7 +28,7 @@
           >
             <div>
               <a :href="href" @click="navigate" class="shop-info__title wildberries-color">WILDBERRIES</a>
-              <button v-if="isActive" class="update-button" v-on:click="updateTables">
+              <button v-if="isActive" class="update-button" v-on:click="throttledUpdateTables">
                 <i class="fa fa-refresh" aria-hidden="true"></i>
               </button>
             </div>
@@ -44,7 +44,7 @@
           >
             <div>
               <a :href="href" @click="navigate" class="shop-info__title t-mall-color">T-MALL</a>
-              <button class="update-button" v-if="isActive" v-on:click="updateTables">
+              <button class="update-button" v-if="isActive" v-on:click="throttledUpdateTables">
                 <i class="fa fa-refresh" aria-hidden="true"></i>
               </button>
             </div>
@@ -60,6 +60,7 @@
 
 <script>
 import axios from 'axios'
+import throttle from 'lodash.throttle'
 
 import { bus } from '../main'
 
@@ -96,10 +97,15 @@ export default {
         })
       })
   },
+  computed: {
+    throttledUpdateTables() {
+      return throttle(this.updateTables, 1000, { 'trailing': false });
+    }
+  },
   methods: {
     updateTables() {
       bus.$emit('updateTables')
-    }
+    },
   }
 }
 </script>
