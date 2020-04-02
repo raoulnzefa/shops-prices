@@ -6,19 +6,49 @@
     <div class="shop-block__content">
       <ul class="shop-list">
         <li class="shop-list__item">
-          <router-link to="/shop/beru" class="shop-info__title beru-color">БЕРУ</router-link>
+          <router-link
+            to="/shop/beru"
+            v-slot="{ href, route, navigate, isActive }"
+          >
+            <div>
+              <a :href="href" @click="navigate" class="shop-info__title beru-color">БЕРУ</a>
+              <button v-if="isActive" class="update-button" v-on:click="updateTables">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+              </button>
+            </div>
+          </router-link>
           <div class="shop-info__meta">
             <span class="shop-info__meta-item">Обновлено: {{ beruTime | with-preposition }}</span>
           </div>
         </li>
         <li class="shop-list__item">
-          <router-link to="/shop/wildberries" class="shop-info__title wildberries-color">WILDBERRIES</router-link>
+          <router-link
+            to="/shop/wildberries"
+            v-slot="{ href, route, navigate, isActive }"
+          >
+            <div>
+              <a :href="href" @click="navigate" class="shop-info__title wildberries-color">WILDBERRIES</a>
+              <button v-if="isActive" class="update-button" v-on:click="updateTables">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+              </button>
+            </div>
+          </router-link>
           <div class="shop-info__meta">
             <span class="shop-info__meta-item">Обновлено: {{ wildberriesTime | with-preposition }}</span>
           </div>
         </li>
         <li class="shop-list__item">
-          <router-link to="/shop/t-mall" class="shop-info__title t-mall-color">T-MALL</router-link>
+          <router-link
+            to="/shop/t-mall"
+            v-slot="{ href, route, navigate, isActive }"
+          >
+            <div>
+              <a :href="href" @click="navigate" class="shop-info__title t-mall-color">T-MALL</a>
+              <button class="update-button" v-if="isActive" v-on:click="updateTables">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+              </button>
+            </div>
+          </router-link>
           <div class="shop-info__meta">
             <span class="shop-info__meta-item">Обновлено: {{ tmallTime | with-preposition }}</span>
           </div>
@@ -29,7 +59,9 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
+
+import { bus } from '../main'
 
 export default {
   name: 'ShopsMenu',
@@ -63,6 +95,11 @@ export default {
           }
         })
       })
+  },
+  methods: {
+    updateTables() {
+      bus.$emit('updateTables')
+    }
   }
 }
 </script>
@@ -103,6 +140,19 @@ export default {
   border-bottom: 1px solid #9c9c9c;
   padding: 9px 0 4px;
 }
+.shop-list__item div {
+  display: flex;
+  margin-bottom: 5px;
+}
+.update-button {
+  background: transparent;
+  border: none;
+  font-size: inherit;
+  padding: 0 4px;
+  margin-left: 4px;
+  cursor: pointer;
+  outline: none;
+}
 .shop-info__title {
   display: inline-block;
   text-decoration: none;
@@ -111,7 +161,6 @@ export default {
   white-space: normal;
   font-weight: 700;
   font-size: 14px;
-  margin: 0 0 5px 0;
   padding: 5px 10px;
   word-break: break-word;
   font-family: 'Fira Sans',sans-serif;

@@ -63,6 +63,8 @@
 
 <script>
 import axios from 'axios'
+
+import { bus } from '../main'
 import filteringHelper from '../helpers/filteringHelper'
 import Spinner from './Spinner'
 import FilterPanel from './FilterPanel'
@@ -87,6 +89,11 @@ export default {
   },
   created() {
     this.fetchData();
+  },
+  mounted() {
+    bus.$on('updateTables', () => {
+      this.fetchData()
+    })
   },
   watch: {
     $route: 'fetchData',
