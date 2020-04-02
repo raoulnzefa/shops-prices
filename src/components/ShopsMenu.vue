@@ -8,19 +8,19 @@
         <li class="shop-list__item">
           <router-link to="/shop/beru" class="shop-info__title beru-color">БЕРУ</router-link>
           <div class="shop-info__meta">
-            <span class="shop-info__meta-item">Обновлено: {{ beruTimeJoin }}</span>
+            <span class="shop-info__meta-item">Обновлено: {{ beruTime | with-preposition }}</span>
           </div>
         </li>
         <li class="shop-list__item">
           <router-link to="/shop/wildberries" class="shop-info__title wildberries-color">WILDBERRIES</router-link>
           <div class="shop-info__meta">
-            <span class="shop-info__meta-item">Обновлено: {{ wildberriesTimeJoin }}</span>
+            <span class="shop-info__meta-item">Обновлено: {{ wildberriesTime | with-preposition }}</span>
           </div>
         </li>
         <li class="shop-list__item">
           <router-link to="/shop/t-mall" class="shop-info__title t-mall-color">T-MALL</router-link>
           <div class="shop-info__meta">
-            <span class="shop-info__meta-item">Обновлено: {{ tmallTimeJoin }}</span>
+            <span class="shop-info__meta-item">Обновлено: {{ tmallTime | with-preposition }}</span>
           </div>
         </li>
       </ul>
@@ -40,15 +40,9 @@ export default {
       tmallTime: '...'
     }
   },
-  computed: {
-    beruTimeJoin() {
-      return this.beruTime.replace(' ', ' в ')
-    },
-    wildberriesTimeJoin() {
-      return this.wildberriesTime.replace(' ', ' в ')
-    },
-    tmallTimeJoin() {
-      return this.tmallTime.replace(' ', ' в ')
+  filters: {
+    withPreposition(value) {
+      return value.replace(' ', ' в ')
     }
   },
   created() {
