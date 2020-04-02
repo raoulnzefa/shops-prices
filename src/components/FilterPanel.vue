@@ -9,13 +9,14 @@
         class="filter-placeholder"
         ref="search"
         :placeholder="placeholder"
-        v-model="filterInputChange"
+        :value="filterInput"
+        v-on:input="filterInputChange($event.target.value)"
       >
       <div class="filter-input__buttons-block">
         <button
           class="filter-input__reset-button"
           v-on:click="resetInput"
-          v-if="filterInputChange.length"
+          v-if="filterInput.length"
         >
           <i class="fa fa-times-circle" aria-hidden="true"></i>
         </button>
@@ -56,7 +57,7 @@ export default {
   data() {
     return {
       placeholder: "",
-      filterInputChange: "",
+      filterInput: "",
       dropdownIsShown: false,
       filterData: [],
       filterSearchItems: [],
@@ -75,14 +76,6 @@ export default {
     $route() {
       this.resetFilter()
     },
-    filterInputChange(input) {
-      this.dropdownIsShown = true;
-      this.filterSearchItems = this.filterData.filter(item => {
-        if (item.toLowerCase().includes(input.toLowerCase())) {
-          return item;
-        }
-      })
-    },
     filterSelectedItems() {
       this.$emit('selectedFilters', this.filterSelectedItems)
       if (!this.filterSelectedItems.length) {
@@ -93,11 +86,21 @@ export default {
     }
   },
   methods: {
+    filterInputChange(value) {
+      this.filterInput = value
+      this.dropdownIsShown = true;
+      this.filterSearchItems = this.filterData.filter(item => {
+        if (item.toLowerCase().includes(value.toLowerCase())) {
+          return item;
+        }
+      })
+    },
     resetInput() {
-      this.filterInputChange = ""
+      this.filterInputChange('')
       this.$refs.search.focus()
     },
     resetFilter() {
+      this.filterInputChange('')
       this.dropdownIsShown = false
       this.filterSelectedItems = []
     },
