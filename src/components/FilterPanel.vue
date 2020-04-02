@@ -53,11 +53,11 @@ import axios from 'axios'
 
 export default {
   name: 'FilterPanel',
-  props: [
-    'goodsFiltering',
-    'discountGoods',
-    'newGoods'
-    ],
+  props: {
+    goodsFiltering: Function,
+    discountGoods: Array,
+    newGoods: Array
+  },
   data() {
     return {
       placeholder: "",

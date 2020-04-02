@@ -1,9 +1,9 @@
 <template>
   <main class="table-block">
     <FilterPanel
-      v-bind:goodsFiltering="goodsFiltering"
-      v-bind:discountGoods="discountGoods"
-      v-bind:newGoods="newGoods"
+      :goodsFiltering="goodsFiltering"
+      :discountGoods="discountGoods"
+      :newGoods="newGoods"
     />
     <div v-if="loading" class="spinner-wrapper">
       <Spinner />
@@ -11,10 +11,10 @@
     <div v-if="!loading">
       <table class="price-change">
         <caption>
-          <span v-bind:class="[`caption-shop ${$route.params.name}-color`]">{{ shopName }}</span>
+          <span :class="[`caption-shop ${$route.params.name}-color`]">{{ shopName }}</span>
           <span class="caption-text">Изменения цен</span>
           <button v-on:click="discountGoodsShown = !discountGoodsShown">
-            <i aria-hidden="true" v-bind:class="[ discountGoodsShown ? 'fa fa-chevron-down' : 'fa fa-chevron-up' ]"></i>
+            <i aria-hidden="true" :class="[ discountGoodsShown ? 'fa fa-chevron-down' : 'fa fa-chevron-up' ]"></i>
           </button>
         </caption>
         <tbody v-if="discountGoodsShown">
@@ -29,7 +29,7 @@
           </tr>
           <tr v-for="product in filteredDiscountGoods" :key="product.id">
             <td>
-              <a v-bind:href="product.url" target="_blank" rel="noreferrer noopener">{{ product.name }}</a>
+              <a :href="product.url" target="_blank" rel="noreferrer noopener">{{ product.name }}</a>
             </td>
             <td>{{ product.price }}</td>
             <td>{{ product.old_price }}</td>
@@ -39,10 +39,10 @@
       </table>
       <table class="new-goods">
         <caption>
-          <span v-bind:class="[`caption-shop ${$route.params.name}-color`]">{{ shopName }}</span>
+          <span :class="[`caption-shop ${$route.params.name}-color`]">{{ shopName }}</span>
           <span class="caption-text">Новые товары</span>
           <button v-on:click="newGoodsShown = !newGoodsShown">
-            <i aria-hidden="true" v-bind:class="[ newGoodsShown ? 'fa fa-chevron-down' : 'fa fa-chevron-up' ]"></i>
+            <i aria-hidden="true" :class="[ newGoodsShown ? 'fa fa-chevron-down' : 'fa fa-chevron-up' ]"></i>
           </button>
         </caption>
         <tbody v-if="newGoodsShown">
@@ -54,7 +54,7 @@
             <td>Новых товаров нет, ожидайте обновления базы!</td>
           </tr>
           <tr v-for="product in filteredNewGoods" :key="product.id">
-            <td><a v-bind:href="product.url" target="_blank" rel="noreferrer noopener">{{ product.name }}</a></td>
+            <td><a :href="product.url" target="_blank" rel="noreferrer noopener">{{ product.name }}</a></td>
             <td>{{ product.price }}</td>
           </tr>
         </tbody>
