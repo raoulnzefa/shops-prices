@@ -24,7 +24,7 @@
           v-on:click="dropdownIsShown = !dropdownIsShown"
         >
           <i
-            v-bind:class="[ dropdownIsShown ? 'fa fa-chevron-circle-down' : 'fa fa-chevron-circle-up' ]"
+            :class="[ dropdownIsShown ? 'fa fa-chevron-circle-down' : 'fa fa-chevron-circle-up' ]"
             aria-hidden="true"
           >
           </i>
@@ -39,10 +39,10 @@
       </ul>
     </div>
     <button class="filter-item" v-on:click="resetFilter">Сбросить</button> 
-    <div class="filter-info" v-bind:class="{ 'filter-active': filterSelectedItems.length }">
+    <div class="filter-info" :class="{ 'filter-active': filterSelectedItems.length }">
       <span>
         {{ filterSelectedItems.length ? 'Фильтр включен' : 'Фильтр выключен' }}
-        <i v-bind:class="[ filterSelectedItems.length ? 'fa fa-check' : 'fa fa-exclamation-circle' ]"></i>
+        <i :class="[ filterSelectedItems.length ? 'fa fa-check' : 'fa fa-exclamation-circle' ]"></i>
       </span>
     </div>
   </div>
