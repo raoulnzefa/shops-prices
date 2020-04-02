@@ -3,7 +3,7 @@
     <div class="filter-block__header">
       <h3 class="filter-block__header-title">Фильтр по производителям</h3>
     </div>
-    <div class="filter-input">
+    <div class="filter-input" ref="filter-input">
       <input
         type="text"
         class="filter-placeholder"
@@ -16,7 +16,7 @@
         <button
           class="filter-input__reset-button"
           v-on:click="resetInput"
-          v-if="filterInput.length"
+          v-if="filterInput.length > 2"
         >
           <i class="fa fa-times-circle" aria-hidden="true"></i>
         </button>
@@ -65,6 +65,15 @@ export default {
     }
   },
   created() {
+    document.addEventListener('click', event => {
+      const target = event.target;
+      if (
+        !this.$refs['filter-input'].contains(target)
+        && this.dropdownIsShown
+      ) {
+        this.resetOnClickOutside()
+      }
+    })
     axios
       .get('http://localhost:3000/filter-items')
       .then(response => {
@@ -100,9 +109,12 @@ export default {
       this.$refs.search.focus()
     },
     resetFilter() {
+      this.resetOnClickOutside()
+      this.filterSelectedItems = []
+    },
+    resetOnClickOutside() {
       this.filterInputChange('')
       this.dropdownIsShown = false
-      this.filterSelectedItems = []
     },
   }
 }
