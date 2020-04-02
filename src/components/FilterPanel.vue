@@ -53,11 +53,6 @@ import axios from 'axios'
 
 export default {
   name: 'FilterPanel',
-  props: {
-    goodsFiltering: Function,
-    discountGoods: Array,
-    newGoods: Array
-  },
   data() {
     return {
       placeholder: "",
@@ -86,8 +81,7 @@ export default {
       })
     },
     filterSelectedItems() {
-      this.goodsFiltering(this.discountGoods, 'filteredDiscountGoods', this.filterSelectedItems)
-      this.goodsFiltering(this.newGoods, 'filteredNewGoods', this.filterSelectedItems)
+      this.$emit('selectedFilters', this.filterSelectedItems)
       if (!this.filterSelectedItems.length) {
         this.placeholder = ""
         return null

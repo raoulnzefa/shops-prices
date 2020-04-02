@@ -1,9 +1,7 @@
 <template>
   <main class="table-block">
     <FilterPanel
-      :goodsFiltering="goodsFiltering"
-      :discountGoods="discountGoods"
-      :newGoods="newGoods"
+      @selectedFilters="goodsFiltering"
     />
     <div v-if="loading" class="spinner-wrapper">
       <Spinner />
@@ -65,6 +63,7 @@
 
 <script>
 import axios from 'axios'
+import filteringHelper from '../helpers/filteringHelper'
 import Spinner from './Spinner'
 import FilterPanel from './FilterPanel'
 
@@ -106,15 +105,11 @@ export default {
           this.newGoods = this.filteredNewGoods = new_goods;
         })
     },
-    goodsFiltering(goods, name, selectedFilters) {
-      this[name] = goods.filter(product => {
-        if (selectedFilters.some(elem => product.name.includes(elem))) {
-          return false
-        }
-        return true
-      })
-    }
-  },
+    goodsFiltering(selectedFilters) {
+      this.filteredDiscountGoods = filteringHelper(this.discountGoods, selectedFilters)
+      this.filteredNewGoods = filteringHelper(this.newGoods, selectedFilters)
+    },
+  }
 }
 </script>
 
