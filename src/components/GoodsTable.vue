@@ -124,7 +124,6 @@ export default {
 .tables-wrapper {
   margin: 10px 0 10px 270px;
   width: 100%;
-  min-height: 297px;
   min-width: 900px;
   padding-right: 10px;
 }

@@ -114,7 +114,7 @@ export default {
       font-size: 18px;
       font-weight: 500;
       margin: 0 20px;
-      padding: 16px 0 12px;
+      padding: 15px 0 13px;
       border-bottom: 1px solid #333333;
     }
   }
@@ -127,7 +127,6 @@ export default {
 .shop {
   &-item {
     position: relative;
-    box-sizing: border-box;
     border-bottom: 1px solid #9c9c9c;
     padding: 9px 0 4px;
     div {
