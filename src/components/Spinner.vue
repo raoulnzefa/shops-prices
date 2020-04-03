@@ -28,6 +28,7 @@ export default {
     animation: spinner-grow 0.75s linear infinite;
   }
 }
+
 @keyframes spinner-grow {   
   0% {
     transform: scale(0)

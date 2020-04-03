@@ -1,60 +1,50 @@
 <template>
-  <nav class="shop-block">
-    <div class="shop-block__header">
-      <h3 class="shop-block__header-title">Магазины</h3>
-    </div>
-    <div class="shop-block__content">
-      <ul class="shop-list">
-        <li class="shop-list__item">
+  <nav class="shops-nav">
+    <h2>Магазины</h2>
+      <ul class="shops-list">
+        <li class="shop-item">
           <router-link
             to="/shop/beru"
             v-slot="{ href, route, navigate, isActive }"
           >
             <div>
-              <a :href="href" @click="navigate" class="shop-info__title beru-color">БЕРУ</a>
-              <button v-if="isActive" class="update-button" v-on:click="throttledUpdateTables">
+              <a :href="href" @click="navigate" class="shop-link beru-color">БЕРУ</a>
+              <button v-if="isActive" v-on:click="throttledUpdateTables" class="update-button">
                 <i class="fa fa-refresh" aria-hidden="true"></i>
               </button>
             </div>
           </router-link>
-          <div class="shop-info__meta">
-            <span class="shop-info__meta-item">Обновлено: {{ beruTime | with-preposition }}</span>
-          </div>
+          <span class="shop-info">Обновлено: {{ beruTime | with-preposition }}</span>
         </li>
-        <li class="shop-list__item">
+        <li class="shop-item">
           <router-link
             to="/shop/wildberries"
             v-slot="{ href, route, navigate, isActive }"
           >
             <div>
-              <a :href="href" @click="navigate" class="shop-info__title wildberries-color">WILDBERRIES</a>
-              <button v-if="isActive" class="update-button" v-on:click="throttledUpdateTables">
+              <a :href="href" @click="navigate" class="shop-link wildberries-color">WILDBERRIES</a>
+              <button v-if="isActive" v-on:click="throttledUpdateTables" class="update-button">
                 <i class="fa fa-refresh" aria-hidden="true"></i>
               </button>
             </div>
           </router-link>
-          <div class="shop-info__meta">
-            <span class="shop-info__meta-item">Обновлено: {{ wildberriesTime | with-preposition }}</span>
-          </div>
+          <span class="shop-info">Обновлено: {{ wildberriesTime | with-preposition }}</span>
         </li>
-        <li class="shop-list__item">
+        <li class="shop-item">
           <router-link
             to="/shop/t-mall"
             v-slot="{ href, route, navigate, isActive }"
           >
             <div>
-              <a :href="href" @click="navigate" class="shop-info__title t-mall-color">T-MALL</a>
-              <button class="update-button" v-if="isActive" v-on:click="throttledUpdateTables">
+              <a :href="href" @click="navigate" class="shop-link t-mall-color">T-MALL</a>
+              <button v-if="isActive" v-on:click="throttledUpdateTables" class="update-button">
                 <i class="fa fa-refresh" aria-hidden="true"></i>
               </button>
             </div>
           </router-link>
-          <div class="shop-info__meta">
-            <span class="shop-info__meta-item">Обновлено: {{ tmallTime | with-preposition }}</span>
-          </div>
+          <span class="shop-info">Обновлено: {{ tmallTime | with-preposition }}</span>
         </li>
       </ul>
-    </div>
   </nav>
 </template>
 
@@ -110,46 +100,53 @@ export default {
 }
 </script>
 
-<style scoped>
-.shop-block {
-  background-color: #f7f7f7;
-  margin: 10px;
-  min-width: 250px;
-  position: fixed;
-  box-shadow: 2px 2px 2px -1px #aba9a9;
+<style lang="scss" scoped>
+@import '../assets/scss/colors.scss';
+
+.shops {
+  &-nav {
+    background-color: #f7f7f7;
+    margin: 10px;
+    min-width: 250px;
+    position: fixed;
+    box-shadow: 2px 2px 2px -1px #aba9a9;
+    h2 {
+      font-size: 18px;
+      font-weight: 500;
+      margin: 0 20px;
+      padding: 16px 0 12px;
+      border-bottom: 1px solid #333333;
+    }
+  }
+  &-list {
+    padding: 10px 20px 20px 20px;
+    list-style: none;
+  }
 }
-.shop-block__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 20px;
-  padding: 19px 0 4px;
-  border-bottom: 1px solid #333333;
+
+.shop {
+  &-item {
+    position: relative;
+    box-sizing: border-box;
+    border-bottom: 1px solid #9c9c9c;
+    padding: 9px 0 4px;
+    div {
+      display: flex;
+      margin-bottom: 5px;
+    }
+  }
+  &-link {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+  &-info {
+    font-size: 13px;
+  }
 }
-.shop-block__header-title {
-  font-weight: 500;
-  font-family: 'Fira Sans',sans-serif;
-  font-size: 18px;
-}
-.shop-block__content {
-  padding: 10px 20px 0 20px;
-  overflow: hidden;
-}
-.shop-list {
-  margin: 0 0 20px 0;
-  padding: 0;
-  list-style: none;
-}
-.shop-list__item {
-  position: relative;
-  box-sizing: border-box;
-  border-bottom: 1px solid #9c9c9c;
-  padding: 9px 0 4px;
-}
-.shop-list__item div {
-  display: flex;
-  margin-bottom: 5px;
-}
+
 .update-button {
   background: transparent;
   border: none;
@@ -159,30 +156,14 @@ export default {
   cursor: pointer;
   outline: none;
 }
-.shop-info__title {
-  display: inline-block;
-  text-decoration: none;
-  color: #fff;
-  vertical-align: top;
-  white-space: normal;
-  font-weight: 700;
-  font-size: 14px;
-  padding: 5px 10px;
-  word-break: break-word;
-  font-family: 'Fira Sans',sans-serif;
-}
+
 .beru-color {
-  background-color: #6F3DF8;
+  background-color: $beru;
 }
 .wildberries-color {
-  background-color: #EE3384;
+  background-color: $wildberries;
 }
 .t-mall-color {
-  background-color: #CE1037;
-}
-.shop-info__meta-item {
-  font-family: 'Fira Sans',sans-serif;
-  font-size: 13px;
-  color: #1d1d1d;
+  background-color: $t-mall;
 }
 </style>

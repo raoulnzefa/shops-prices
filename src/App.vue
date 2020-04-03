@@ -23,6 +23,7 @@ export default {
   box-sizing: border-box;
 }
 #app {
+  font-family: 'Fira Sans',sans-serif;
   display: flex;
 }
 </style>
