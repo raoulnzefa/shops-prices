@@ -1,5 +1,7 @@
 <template>
-  <div class="spinner-grow"></div>
+  <div class="spinner-wrapper">
+    <div class="spinner-grow"></div>
+  </div>
 </template>
 
 <script>
@@ -9,6 +11,11 @@ export default {
 </script>
 
 <style scoped>
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
 .spinner-grow {
   display: inline-block;
   width: 40px;

@@ -3,9 +3,7 @@
     <FilterPanel
       @selectedFilters="goodsFiltering"
     />
-    <div v-if="loading" class="spinner-wrapper">
-      <Spinner />
-    </div>
+    <Spinner v-if="loading" />
     <div v-if="!loading">
       <table class="price-change">
         <caption>
@@ -121,11 +119,6 @@ export default {
 </script>
 
 <style scoped>
-.spinner-wrapper {
-  display: flex;
-  justify-content: center;
-  padding-top: 20px;
-}
 .table-block {
   margin: 10px 0 10px 270px;
   width: 100%;
