@@ -10,21 +10,23 @@ export default {
 }
 </script>
 
-<style scoped>
-.spinner-wrapper {
-  display: flex;
-  justify-content: center;
-  padding-top: 20px;
-}
-.spinner-grow {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  vertical-align: text-bottom;
-  background-color: grey;
-  border-radius: 50%;
-  opacity: 0;
-  animation: spinner-grow 0.75s linear infinite;
+<style lang="scss" scoped>
+.spinner {
+  &-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+  }
+  &-grow {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    vertical-align: text-bottom;
+    background-color: grey;
+    border-radius: 50%;
+    opacity: 0;
+    animation: spinner-grow 0.75s linear infinite;
+  }
 }
 @keyframes spinner-grow {   
   0% {
