@@ -1,6 +1,9 @@
 <template>
   <form v-on:submit.prevent class="filter-form">
-    <label for="search">Фильтр по производителям</label>
+    <label for="search">
+      <span>Фильтр по производителям</span>
+      <i class="fa fa-filter" aria-hidden="true"></i>
+    </label>
     <div ref="input-wrapper" class="input-wrapper">
       <input
         type="text"
@@ -43,12 +46,11 @@
       </ul>
     </div>
     <button class="filter-reset" v-on:click="resetFilter">Сбросить</button> 
-    <div class="filter-info" :class="{ 'filter-active': filterSelectedItems.length }">
-      <span>
-        {{ filterSelectedItems.length ? 'Фильтр включен' : 'Фильтр выключен' }}
-        <i :class="[ filterSelectedItems.length ? 'fa fa-check' : 'fa fa-exclamation-circle' ]"></i>
-      </span>
-    </div>
+    <span class="filter-info" :class="{ 'filter-active': filterSelectedItems.length }">
+      {{ filterSelectedItems.length ? 'Фильтр включен' : 'Фильтр выключен' }}
+      <i :class="[ filterSelectedItems.length ? 'fa fa-check' : 'fa fa-exclamation-circle' ]"></i>
+    </span>
+    <div class="break"></div>
   </form>
 </template>
 
@@ -136,6 +138,7 @@ export default {
     width: 100%;
     background-color: bisque;
     display: flex;
+    flex-flow: wrap;
     align-items: center;
     position: sticky;
     top: 0px;
@@ -147,15 +150,17 @@ export default {
       margin: 0 20px;
       padding-right: 16px;
       border-right: 1px solid #333333;
+      > .fa {
+        display: none;
+      }
     }
   }
   &-reset {
     -webkit-appearance: none;
     background-image: linear-gradient(180deg, #ececec, #f0f0f0);
     font-size: inherit;
-    padding: 1px 6px;
+    padding: 5px 6px;
     margin-right: 10px;
-    height: 30px;
     outline: none;
     border: 1px solid grey;
     cursor: pointer;
@@ -164,19 +169,24 @@ export default {
     }
   }
   &-info {
-    border: 1px solid red;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    padding: 0 6px;
-    span {
-      color: #f21a1a;
-    }
+    border: 1px solid grey;
+    color: #7d7d7d;
+    padding: 5px 6px;
+    margin-right: 10px;
   }
   &-active {
     border-color: #39c522;
-    span {
-      color: #2faf3e;
+    color: #2faf3e;
+  }
+}
+
+@media screen and (max-width: 1056px) {
+  .filter-form > label {
+    > span {
+      display: none;
+    }
+    > .fa {
+      display: inline-block;
     }
   }
 }
@@ -185,9 +195,8 @@ export default {
   position: relative;
   font-size: 16px;
   width: 200px;
-  height: 30px;
   border: 1px solid grey;
-  padding: 6px 45px 6px 10px;
+  padding: 5px 45px 5px 10px;
   outline: none;
 }
 
@@ -228,6 +237,34 @@ export default {
   }
   &-dropdown {
     margin: 0 6px;
+  }
+}
+
+@media screen and (max-width: 564px) {
+  .filter-form {
+    justify-content: center;
+    > label {
+      margin: 0 20px 0 10px;
+      order: 0;
+    }
+  }
+  .input-wrapper {
+    margin: 10px 0 0 10px;
+    order: 4;
+  }
+  .filter {
+    &-reset {
+      margin: 10px 10px 0 10px;
+      order: 5;
+    }
+    &-info {
+      order: 1;
+    }
+  }
+  .break {
+    order: 3;
+    flex-basis: 100%;
+    height: 0;
   }
 }
 

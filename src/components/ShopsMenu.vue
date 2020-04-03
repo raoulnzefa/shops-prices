@@ -124,6 +124,12 @@ export default {
   }
 }
 
+@media screen and (max-width: 892px) {
+  .shops-nav {
+    display: none;
+  }
+}
+
 .shop {
   &-item {
     position: relative;

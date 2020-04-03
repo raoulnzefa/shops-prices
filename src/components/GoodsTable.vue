@@ -1,10 +1,10 @@
 <template>
-  <div class="tables-wrapper">
+  <div class="container">
     <FilterPanel
       @selectedFilters="goodsFiltering"
     />
     <Spinner v-if="loading" />
-    <div v-if="!loading">
+    <div v-if="!loading" class="tables-wrapper">
       <table class="price-changes">
         <caption>
           <span :class="[`shop ${$route.params.name}-color`]">{{ shopName }}</span>
@@ -121,11 +121,21 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/scss/shop-colors.scss';
 
-.tables-wrapper {
+.container {
   margin: 10px 0 10px 270px;
   width: 100%;
-  min-width: 900px;
   padding-right: 10px;
+}
+
+@media screen and (max-width: 892px) {
+  .container {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.tables-wrapper {
+  overflow: auto;
 }
 
 .price-changes, .new-goods {
@@ -134,6 +144,7 @@ export default {
   border-collapse: collapse;
   text-align: center;
   width: 100%;
+  min-width: 600px;
   background-color: #f7f7f7;
   margin-top: 10px;
   caption {
