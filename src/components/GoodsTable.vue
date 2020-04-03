@@ -1,15 +1,15 @@
 <template>
-  <main class="table-block">
+  <div class="tables-wrapper">
     <FilterPanel
       @selectedFilters="goodsFiltering"
     />
     <Spinner v-if="loading" />
     <div v-if="!loading">
-      <table class="price-change">
+      <table class="price-changes">
         <caption>
-          <span :class="[`caption-shop ${$route.params.name}-color`]">{{ shopName }}</span>
-          <span class="caption-text">Изменения цен</span>
-          <button v-on:click="discountGoodsShown = !discountGoodsShown">
+          <span :class="[`shop ${$route.params.name}-color`]">{{ shopName }}</span>
+          <span class="text">Изменения цен</span>
+          <button v-on:click="discountGoodsShown = !discountGoodsShown" class="toggle-button">
             <i aria-hidden="true" :class="[ discountGoodsShown ? 'fa fa-chevron-down' : 'fa fa-chevron-up' ]"></i>
           </button>
         </caption>
@@ -35,9 +35,9 @@
       </table>
       <table class="new-goods">
         <caption>
-          <span :class="[`caption-shop ${$route.params.name}-color`]">{{ shopName }}</span>
-          <span class="caption-text">Новые товары</span>
-          <button v-on:click="newGoodsShown = !newGoodsShown">
+          <span :class="[`shop ${$route.params.name}-color`]">{{ shopName }}</span>
+          <span class="text">Новые товары</span>
+          <button v-on:click="newGoodsShown = !newGoodsShown" class="toggle-button">
             <i aria-hidden="true" :class="[ newGoodsShown ? 'fa fa-chevron-down' : 'fa fa-chevron-up' ]"></i>
           </button>
         </caption>
@@ -56,7 +56,7 @@
         </tbody>
       </table>
     </div>
-  </main>
+  </div>
 </template>
 
 <script>
@@ -118,108 +118,121 @@ export default {
 }
 </script>
 
-<style scoped>
-.table-block {
+<style lang="scss" scoped>
+@import '../assets/scss/shop-colors.scss';
+
+.tables-wrapper {
   margin: 10px 0 10px 270px;
   width: 100%;
   min-height: 297px;
   min-width: 900px;
   padding-right: 10px;
 }
-table {
-  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+
+.price-changes, .new-goods {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   font-size: 14px;
   border-collapse: collapse;
   text-align: center;
   width: 100%;
   background-color: #f7f7f7;
   margin-top: 10px;
+  caption {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    .shop {
+      font-family: sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      padding: 5px 10px;
+      margin-left: 20px;
+    }
+    .text {
+      font-family: 'Fira Sans', sans-serif;
+      text-align: left;
+      font-size: 18px;
+      font-weight: 500;
+      display: block;
+      padding-left: 20px;
+    }
+  }
 }
-table caption {
-  height: 50px;
-  display: flex;
-  align-items: center;
-}
-table caption .caption-text {
-  padding-left: 20px;
-  text-align: left;
-  font-size: 18px;
-  font-weight: 500;
-  font-family: 'Fira Sans',sans-serif;
-  display: block;
-}
-table caption button {
+
+.toggle-button {
   border: none;
   background: transparent;
   font-size: 18px;
+  margin-left: 6px;
   outline: none;
   cursor: pointer;
-  margin-left: 6px;
 }
-table caption .caption-shop {
-  color: white;
-  padding: 5px 10px;
-  margin-left: 20px;
-  font-size: 14px;
-  font-weight: 600;
-  font-family: sans-serif;
-}
-th:first-child {
-  width: 60%;
-}
-th, td:first-child {
-  padding: 10px 20px;
-  font-weight: 400;
-}
+
 th, td {
   border-style: solid;
   border-width: 0 1px 1px 0;
   border-color: white;
+  &:first-child {
+    text-align: left;
+  }
+  &:last-child {
+    border-right: none;
+  }
 }
-th:first-child, td:first-child {
-  text-align: left;
+
+th {
+  padding: 10px 20px;
+  font-weight: 400;
+  &:first-child {
+    width: 60%;
+  }
 }
-th:last-child, td:last-child {
-  border-right: none;
+
+td {
+  &:first-child {
+    padding: 10px 20px;
+    font-weight: 400;
+  }
 }
-tr:last-child td {
-  border-bottom: none;
+
+tr {
+  &:last-child td {
+    border-bottom: none;
+  }
+  &.prod-empty td {
+    text-align: center;
+    background-color: #d20808 !important;
+  }
 }
-tr.prod-empty td {
-  text-align: center;
-  background-color: #d20808 !important;
+
+/* Price changes table colors */
+.price-changes {
+  th, td:first-child {
+    background: #AFCDE7;
+    color: white;
+  }
+  td {
+    background: #D8E6F3;
+    a {
+      color: #01597b;
+      text-decoration: none;
+    }
+  }
 }
-/* Price change table colors */
-.price-change th, .price-change td:first-child {
-  background: #AFCDE7;
-  color: white;
-}
-.price-change td {
-  background: #D8E6F3;
-}
-.price-change td a {
-  color: #01597b;
-  text-decoration: none;
-}
+
 /* New goods table colors */
-.new-goods th, .new-goods td:first-child {
-  background: #6bc57f;
-  color: white;
-}
-.new-goods td {
-  background: #badcc2;
-}
-.new-goods td a {
-  color: #1c5222;
-  text-decoration: none;
-}
-.beru-color {
-  background-color: #6F3DF8;
-}
-.wildberries-color {
-  background-color: #EE3384;
-}
-.t-mall-color {
-  background-color: #CE1037;
+.new-goods {
+  th, td:first-child {
+    background: #6bc57f;
+    color: white;
+  }
+  td {
+    background: #badcc2;
+    a {
+      color: #1c5222;
+      text-decoration: none;
+    }
+  }
 }
 </style>

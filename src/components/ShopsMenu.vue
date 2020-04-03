@@ -101,7 +101,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/scss/colors.scss';
+@import '../assets/scss/shop-colors.scss';
 
 .shops {
   &-nav {
@@ -155,15 +155,5 @@ export default {
   margin-left: 4px;
   cursor: pointer;
   outline: none;
-}
-
-.beru-color {
-  background-color: $beru;
-}
-.wildberries-color {
-  background-color: $wildberries;
-}
-.t-mall-color {
-  background-color: $t-mall;
 }
 </style>
