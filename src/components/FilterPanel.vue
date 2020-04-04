@@ -2,7 +2,7 @@
   <form v-on:submit.prevent class="filter-form">
     <label for="search">
       <span>Фильтр по производителям</span>
-      <i class="fa fa-filter" aria-hidden="true"></i>
+      <i class="fa fa-filter" :class="{ 'active': filterSelectedItems.length }" aria-hidden="true"></i>
     </label>
     <div ref="input-wrapper" class="input-wrapper">
       <input
@@ -135,10 +135,8 @@ export default {
 <style lang="scss" scoped>
 .filter {
   &-form {
-    width: 100%;
     background-color: bisque;
     display: flex;
-    flex-flow: wrap;
     align-items: center;
     position: sticky;
     top: 0px;
@@ -150,7 +148,7 @@ export default {
       margin: 0 20px;
       padding-right: 16px;
       border-right: 1px solid #333333;
-      > .fa {
+      > .fa-filter {
         display: none;
       }
     }
@@ -185,7 +183,7 @@ export default {
     > span {
       display: none;
     }
-    > .fa {
+    > .fa-filter {
       display: inline-block;
     }
   }
@@ -206,6 +204,7 @@ export default {
     margin-right: 10px;
   }
   &-list {
+    overflow-x: hidden;
     position: absolute;
     top: 29px;
     list-style: none;
@@ -241,30 +240,33 @@ export default {
 }
 
 @media screen and (max-width: 564px) {
-  .filter-form {
-    justify-content: center;
-    > label {
-      margin: 0 20px 0 10px;
-      order: 0;
-    }
-  }
-  .input-wrapper {
-    margin: 10px 0 0 10px;
-    order: 4;
-  }
   .filter {
-    &-reset {
-      margin: 10px 10px 0 10px;
-      order: 5;
+    &-form {
+      justify-content: center;
+      label > .fa-filter {
+        color: #7d7d7d;
+        &.active {
+          color: #2faf3e;
+        }
+      }
     }
     &-info {
-      order: 1;
+    display: none;
     }
   }
-  .break {
-    order: 3;
-    flex-basis: 100%;
-    height: 0;
+}
+
+@media screen and (max-width: 440px) {
+  .input {
+    &-wrapper {
+    flex-grow: 1;
+    }
+    &-list {
+    width: 100%;
+    }
+  }
+  #search {
+    width: 100%;
   }
 }
 
@@ -280,6 +282,9 @@ export default {
   padding: 6px 10px;
   cursor: pointer;
   display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   &:hover {
     background: grey;
     color: white;
