@@ -1,5 +1,5 @@
 <template>
-  <nav class="shops-nav">
+  <nav class="shops-nav" :class="{ 'open': isOpen }">
     <h2>Магазины</h2>
       <ul class="shops-list">
         <li class="shop-item">
@@ -8,7 +8,7 @@
             v-slot="{ href, route, navigate, isActive }"
           >
             <div>
-              <a :href="href" @click="navigate" class="shop-link beru-color">БЕРУ</a>
+              <a :href="href" @click="navigate" v-on:click="isOpen=false" class="shop-link beru-color">БЕРУ</a>
               <button v-if="isActive" v-on:click="throttledUpdateTables" class="update-button">
                 <i class="fa fa-refresh" aria-hidden="true"></i>
               </button>
@@ -22,7 +22,7 @@
             v-slot="{ href, route, navigate, isActive }"
           >
             <div>
-              <a :href="href" @click="navigate" class="shop-link wildberries-color">WILDBERRIES</a>
+              <a :href="href" @click="navigate" v-on:click="isOpen=false" class="shop-link wildberries-color">WILDBERRIES</a>
               <button v-if="isActive" v-on:click="throttledUpdateTables" class="update-button">
                 <i class="fa fa-refresh" aria-hidden="true"></i>
               </button>
@@ -36,7 +36,7 @@
             v-slot="{ href, route, navigate, isActive }"
           >
             <div>
-              <a :href="href" @click="navigate" class="shop-link t-mall-color">T-MALL</a>
+              <a :href="href" @click="navigate" v-on:click="isOpen=false" class="shop-link t-mall-color">T-MALL</a>
               <button v-if="isActive" v-on:click="throttledUpdateTables" class="update-button">
                 <i class="fa fa-refresh" aria-hidden="true"></i>
               </button>
@@ -58,6 +58,7 @@ export default {
   name: 'ShopsMenu',
   data() {
     return {
+      isOpen: false,
       beruTime: '...',
       wildberriesTime: '...',
       tmallTime: '...'
@@ -87,6 +88,11 @@ export default {
         })
       })
   },
+  mounted() {
+    bus.$on('toggleMenu', () => {
+      this.toggleMenu()
+    })
+  },
   computed: {
     throttledUpdateTables() {
       return throttle(this.updateTables, 1000, { 'trailing': false });
@@ -95,6 +101,9 @@ export default {
   methods: {
     updateTables() {
       bus.$emit('updateTables')
+    },
+    toggleMenu() {
+      this.isOpen = !this.isOpen
     },
   }
 }
@@ -107,7 +116,7 @@ export default {
   &-nav {
     background-color: #f7f7f7;
     margin: 10px;
-    min-width: 250px;
+    width: 250px;
     position: fixed;
     box-shadow: 2px 2px 2px -1px #aba9a9;
     h2 {
@@ -126,7 +135,16 @@ export default {
 
 @media screen and (max-width: 892px) {
   .shops-nav {
-    display: none;
+    height: 100vh;
+    top: 0;
+    left: -254px;
+    margin: 0;
+    z-index: 10;
+    box-shadow: 2px 0 2px -1px #aba9a9;
+    transition: left 0.5s ease-in-out;
+  }
+  .open {
+    left: 0;
   }
 }
 

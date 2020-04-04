@@ -211,7 +211,6 @@ export default {
     border: 1px solid grey;
     width: 200px;
     max-height: 300px;
-    overflow: auto;
     background: white;
     li {
       height: 30px;
@@ -243,10 +242,13 @@ export default {
   .filter {
     &-form {
       justify-content: center;
-      label > .fa-filter {
-        color: #7d7d7d;
-        &.active {
-          color: #2faf3e;
+      > label {
+        margin: 0 20px 0 10px;
+        & > .fa-filter {
+          color: #7d7d7d;
+          &.active {
+            color: #2faf3e;
+          }
         }
       }
     }
