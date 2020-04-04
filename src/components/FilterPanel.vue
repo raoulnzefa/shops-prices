@@ -87,7 +87,7 @@ export default {
       }
     })
     axios
-      .get('http://localhost:3000/filter-items')
+      .get(`${process.env.VUE_APP_API_BASE_PATH}/filter-items`)
       .then(response => {
         const { data } = response;
         this.filterData = this.filterSearchItems = data;

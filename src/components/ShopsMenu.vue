@@ -71,7 +71,7 @@ export default {
   },
   created() {
     axios
-      .get('http://localhost:3000/shops-info')
+      .get(`${process.env.VUE_APP_API_BASE_PATH}/shops-info`)
       .then(response => {
         response.data.forEach(shop => {
           switch(shop.id) {

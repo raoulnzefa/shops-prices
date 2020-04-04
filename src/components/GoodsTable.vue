@@ -100,7 +100,7 @@ export default {
     fetchData() {
       this.loading = true
       axios
-        .get(`http://localhost:3000/${this.$route.params.name}-goods`)
+        .get(`${process.env.VUE_APP_API_BASE_PATH}/${this.$route.params.name}-goods`)
         .then(response => {
           this.loading = false
           const { discount_goods, new_goods, name } = response.data;
