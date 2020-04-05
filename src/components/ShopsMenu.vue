@@ -7,8 +7,8 @@
             to="/shop/beru"
             v-slot="{ href, route, navigate, isActive }"
           >
-            <div>
-              <a :href="href" @click="navigate" v-on:click="isOpen=false" class="shop-link beru-color">БЕРУ</a>
+            <div v-on:click="isOpen=false">
+              <a :href="href" @click="navigate" class="shop-link beru-color">БЕРУ</a>
               <button v-if="isActive" v-on:click="throttledUpdateTables" class="update-button">
                 <i class="fa fa-refresh" aria-hidden="true"></i>
               </button>
@@ -21,8 +21,8 @@
             to="/shop/wildberries"
             v-slot="{ href, route, navigate, isActive }"
           >
-            <div>
-              <a :href="href" @click="navigate" v-on:click="isOpen=false" class="shop-link wildberries-color">WILDBERRIES</a>
+            <div v-on:click="isOpen=false">
+              <a :href="href" @click="navigate" class="shop-link wildberries-color">WILDBERRIES</a>
               <button v-if="isActive" v-on:click="throttledUpdateTables" class="update-button">
                 <i class="fa fa-refresh" aria-hidden="true"></i>
               </button>
@@ -35,8 +35,8 @@
             to="/shop/t-mall"
             v-slot="{ href, route, navigate, isActive }"
           >
-            <div>
-              <a :href="href" @click="navigate" v-on:click="isOpen=false" class="shop-link t-mall-color">T-MALL</a>
+            <div v-on:click="isOpen=false">
+              <a :href="href" @click="navigate" class="shop-link t-mall-color">T-MALL</a>
               <button v-if="isActive" v-on:click="throttledUpdateTables" class="update-button">
                 <i class="fa fa-refresh" aria-hidden="true"></i>
               </button>
@@ -141,7 +141,7 @@ export default {
     margin: 0;
     z-index: 10;
     box-shadow: 2px 0 2px -1px #aba9a9;
-    transition: left 0.5s ease-in-out;
+    transition: left 0.3s ease-in-out;
   }
   .open {
     left: 0;
