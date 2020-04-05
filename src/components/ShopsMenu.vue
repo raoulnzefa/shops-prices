@@ -7,7 +7,7 @@
             to="/shop/beru"
             v-slot="{ href, route, navigate, isActive }"
           >
-            <div v-on:click="isOpen=false">
+            <div v-on:click="emitCloseMenu">
               <a :href="href" @click="navigate" class="shop-link beru-color">БЕРУ</a>
               <button v-if="isActive" v-on:click="throttledUpdateTables" class="update-button">
                 <i class="fa fa-refresh" aria-hidden="true"></i>
@@ -21,7 +21,7 @@
             to="/shop/wildberries"
             v-slot="{ href, route, navigate, isActive }"
           >
-            <div v-on:click="isOpen=false">
+            <div v-on:click="emitCloseMenu">
               <a :href="href" @click="navigate" class="shop-link wildberries-color">WILDBERRIES</a>
               <button v-if="isActive" v-on:click="throttledUpdateTables" class="update-button">
                 <i class="fa fa-refresh" aria-hidden="true"></i>
@@ -35,7 +35,7 @@
             to="/shop/t-mall"
             v-slot="{ href, route, navigate, isActive }"
           >
-            <div v-on:click="isOpen=false">
+            <div v-on:click="emitCloseMenu">
               <a :href="href" @click="navigate" class="shop-link t-mall-color">T-MALL</a>
               <button v-if="isActive" v-on:click="throttledUpdateTables" class="update-button">
                 <i class="fa fa-refresh" aria-hidden="true"></i>
@@ -56,9 +56,11 @@ import { bus } from '../main'
 
 export default {
   name: 'ShopsMenu',
+  props: {
+    isOpen: Boolean
+  },
   data() {
     return {
-      isOpen: false,
       beruTime: '...',
       wildberriesTime: '...',
       tmallTime: '...'
@@ -88,11 +90,6 @@ export default {
         })
       })
   },
-  mounted() {
-    bus.$on('toggleMenu', () => {
-      this.toggleMenu()
-    })
-  },
   computed: {
     throttledUpdateTables() {
       return throttle(this.updateTables, 1000, { 'trailing': false });
@@ -102,9 +99,9 @@ export default {
     updateTables() {
       bus.$emit('updateTables')
     },
-    toggleMenu() {
-      this.isOpen = !this.isOpen
-    },
+    emitCloseMenu() {
+      this.$emit('closeMenu')
+    }
   }
 }
 </script>

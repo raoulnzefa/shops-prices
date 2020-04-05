@@ -1,5 +1,5 @@
 <template>
-  <button v-on:click="emitToggleMenu" class="menu-expand" :class="{ 'active' : isActive}">
+  <button v-on:click="emitToggleMenu" class="menu-expand" :class="{ 'active' : isOpen }">
     <div class="burger-box">
       <div class="burger-inner"></div>
     </div>
@@ -7,19 +7,14 @@
 </template>
 
 <script>
-import { bus } from '../main'
-
 export default {
   name: 'MenuExpandButton',
-  data() {
-    return {
-      isActive: false,
-    }
+  props: {
+    isOpen: Boolean
   },
   methods: {
     emitToggleMenu() {
-      this.isActive = !this.isActive
-      bus.$emit('toggleMenu')
+      this.$emit('toggleMenu')
     }
   }
 }

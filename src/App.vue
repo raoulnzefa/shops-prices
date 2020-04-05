@@ -1,20 +1,17 @@
 <template>
   <div id="app">
-    <ShopsMenu />
-    <MenuExpandButton />
+    <Menu />
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import ShopsMenu from './components/ShopsMenu.vue'
-import MenuExpandButton from './components/MenuExpandButton.vue'
+import Menu from './components/Menu'
 
 export default {
   name: 'App',
   components: {
-    ShopsMenu,
-    MenuExpandButton
+    Menu
   }
 }
 </script>
