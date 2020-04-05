@@ -52,7 +52,7 @@
 import axios from 'axios'
 import throttle from 'lodash.throttle'
 
-import { bus } from '../main'
+import { bus } from '../../main'
 
 export default {
   name: 'ShopsMenu',
@@ -107,7 +107,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/scss/shop-colors.scss';
+@import '../../assets/scss/shop-colors.scss';
 
 .shops {
   &-nav {
