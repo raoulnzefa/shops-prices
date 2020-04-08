@@ -22,6 +22,16 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
+
+*::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f0f0f0;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #cdcdcd;
+}
+
 #app {
   font-family: 'Fira Sans',sans-serif;
   display: flex;
