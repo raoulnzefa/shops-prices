@@ -16,8 +16,8 @@
       <div class="input-controls">
         <button
           v-on:click="resetInput"
-          v-if="filterInput.length > 2"
           class="input-reset"
+          :class="{ 'show': filterInput.length > 2 }"
         >
           <i class="fa fa-times-circle" aria-hidden="true"></i>
         </button>
@@ -116,13 +116,6 @@ export default {
     },
     onClickListener(event) {
       const target = event.target;
-      // get rid of this condition
-      if (
-        target.className === 'input-reset'
-        || target.className === 'fa fa-times-circle'
-      ) {
-        return null
-      }
       if (
         !this.$refs['input-wrapper'].contains(target)
         && this.dropdownIsShown
@@ -202,6 +195,9 @@ export default {
   border: 1px solid grey;
   padding: 5px 45px 5px 10px;
   outline: none;
+  &::-ms-clear {
+    display: none;
+  }
 }
 
 .input {
@@ -238,6 +234,10 @@ export default {
   }
   &-reset {
     margin-left: 6px;
+    display: none;
+    &.show {
+      display: inline-block;
+    }
   }
   &-dropdown {
     margin: 0 6px;
