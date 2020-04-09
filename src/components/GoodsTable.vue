@@ -109,6 +109,7 @@ export default {
           this.discountGoods = this.filteredDiscountGoods = discount_goods;
           this.newGoods = this.filteredNewGoods = new_goods;
         })
+        .catch(() => this.$router.push('/404'))
     },
     goodsFiltering(selectedFilters) {
       this.filteredDiscountGoods = filteringHelper(this.discountGoods, selectedFilters)

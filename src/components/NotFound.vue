@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>Такой страницы не существует!</p>
+    <p>404 | Такой страницы не существует!</p>
     <router-link to="/">На главную</router-link>
   </div>
 </template>
