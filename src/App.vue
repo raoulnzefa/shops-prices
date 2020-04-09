@@ -18,7 +18,8 @@ export default {
     style: normal;
     display: swap;
   }
-  src: url('./assets/fonts/Lucida-Sans-Unicode.ttf') format('truetype');
+  src: local('Lucida Sans Unicode'),
+  url('./assets/fonts/Lucida-Sans-Unicode.ttf') format('truetype');
 }
 
 * {
