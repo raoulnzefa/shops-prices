@@ -10,7 +10,17 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@font-face {
+  font: {
+    family: 'Lucida Sans Unicode';
+    weight: normal;
+    style: normal;
+    display: swap;
+  }
+  src: url('./assets/fonts/Lucida-Sans-Unicode.ttf') format('truetype');
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -28,6 +38,6 @@ export default {
 }
 
 #app {
-  font-family: 'Fira Sans',sans-serif;
+  font-family: sans-serif;
 }
 </style>

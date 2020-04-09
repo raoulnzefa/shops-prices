@@ -140,7 +140,7 @@ export default {
 }
 
 .price-changes, .new-goods {
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-family: "Lucida Sans Unicode", sans-serif;
   font-size: 14px;
   border-collapse: collapse;
   text-align: center;
@@ -149,11 +149,11 @@ export default {
   background-color: #f7f7f7;
   margin-top: 10px;
   caption {
+    font-family: sans-serif;
     height: 50px;
     display: flex;
     align-items: center;
     .shop {
-      font-family: sans-serif;
       font-size: 14px;
       font-weight: 600;
       color: white;
@@ -161,7 +161,6 @@ export default {
       margin-left: 20px;
     }
     .text {
-      font-family: 'Fira Sans', sans-serif;
       text-align: left;
       font-size: 18px;
       font-weight: 500;
