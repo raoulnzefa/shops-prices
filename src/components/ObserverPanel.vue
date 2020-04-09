@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="observer-panel">
     <Menu />
     <router-view></router-view>
   </div>
@@ -15,3 +15,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.observer-panel {
+  display: flex;
+}
+</style>

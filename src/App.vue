@@ -19,6 +19,7 @@ export default {
 
 *::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
   background-color: #f0f0f0;
 }
 
@@ -28,6 +29,5 @@ export default {
 
 #app {
   font-family: 'Fira Sans',sans-serif;
-  display: flex;
 }
 </style>
