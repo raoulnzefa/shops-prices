@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Menu from './Menu/Menu'
+import Menu from './Menu'
 
 export default {
   name: 'ObserverPanel',

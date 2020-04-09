@@ -62,9 +62,9 @@
 <script>
 import axios from 'axios'
 
-import { bus } from '../main'
-import filteringHelper from '../helpers/filteringHelper'
-import Spinner from './Spinner'
+import { bus } from '@/main'
+import filteringHelper from '@/helpers/filteringHelper'
+import Spinner from '@/components/Spinner'
 import FilterPanel from './FilterPanel'
 
 export default {
@@ -120,7 +120,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/scss/shop-colors.scss';
+@import '@/assets/scss/shop-colors.scss';
 
 .container {
   margin: 10px 0 10px 270px;

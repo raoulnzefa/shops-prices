@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ObserverPanel from '../components/ObserverPanel'
-import GoodsTable from '../components/GoodsTable'
-import NotFound from '../components/NotFound'
+import ObserverPanel from '@/components/ObserverPanel'
+import GoodsTable from '@/components/ObserverPanel/GoodsTable'
+import NotFound from '@/components/NotFound'
 
 Vue.use(Router)
 
