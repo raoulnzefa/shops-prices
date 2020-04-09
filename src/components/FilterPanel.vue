@@ -70,28 +70,18 @@ export default {
     }
   },
   created() {
-    document.addEventListener('click', event => {
-      const target = event.target;
-      // get rid of this condition
-      if (
-        target.className === 'input-reset'
-        || target.className === 'fa fa-times-circle'
-      ) {
-        return null
-      }
-      if (
-        !this.$refs['input-wrapper'].contains(target)
-        && this.dropdownIsShown
-      ) {
-        this.resetOnClickOutside()
-      }
-    })
     axios
       .get(`${process.env.VUE_APP_API_BASE_PATH}/filter-items`)
       .then(response => {
         const { data } = response;
         this.filterData = this.filterSearchItems = data;
       })
+  },
+  mounted() {
+    document.addEventListener('click', this.onClickListener)
+  },
+  beforeDestroy() {
+    document.removeEventListener('click', this.onClickListener)
   },
   watch: {
     $route() {
@@ -123,6 +113,22 @@ export default {
     resetFilter() {
       this.resetOnClickOutside()
       this.filterSelectedItems = []
+    },
+    onClickListener(event) {
+      const target = event.target;
+      // get rid of this condition
+      if (
+        target.className === 'input-reset'
+        || target.className === 'fa fa-times-circle'
+      ) {
+        return null
+      }
+      if (
+        !this.$refs['input-wrapper'].contains(target)
+        && this.dropdownIsShown
+      ) {
+        this.resetOnClickOutside()
+      }
     },
     resetOnClickOutside() {
       this.filterInputChange('')
