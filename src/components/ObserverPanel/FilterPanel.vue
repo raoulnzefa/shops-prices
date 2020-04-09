@@ -57,6 +57,8 @@
 <script>
 import axios from 'axios'
 
+import { bus } from '@/main'
+
 export default {
   name: 'FilterPanel',
   data() {
@@ -79,6 +81,9 @@ export default {
   },
   mounted() {
     document.addEventListener('click', this.onClickListener)
+    bus.$on('updateTables', () => {
+      this.resetFilter()
+    })
   },
   beforeDestroy() {
     document.removeEventListener('click', this.onClickListener)
