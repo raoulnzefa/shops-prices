@@ -1,5 +1,5 @@
 <template>
-  <nav class="shops-nav" :class="{ 'open': isOpen }">
+  <nav ref="sidebar" class="shops-nav" :class="{ 'open': isOpen }">
     <h2>Магазины</h2>
       <ul class="shops-list">
         <li class="shop-item">
@@ -63,12 +63,19 @@ export default {
     return {
       beruTime: '...',
       wildberriesTime: '...',
-      tmallTime: '...'
+      tmallTime: '...',
+      touchStartCoords: {},
+      touchEndCoords: {}
     }
   },
   filters: {
     withPreposition(value) {
       return value.replace(' ', ' в ')
+    }
+  },
+  computed: {
+    throttledUpdateTables() {
+      return throttle(this.updateTables, 1000, { 'trailing': false });
     }
   },
   created() {
@@ -90,12 +97,28 @@ export default {
         })
       })
   },
-  computed: {
-    throttledUpdateTables() {
-      return throttle(this.updateTables, 1000, { 'trailing': false });
-    }
+  mounted() {
+    this.$refs.sidebar.addEventListener('touchstart', this.touchStartHandler)
+    this.$refs.sidebar.addEventListener('touchend', this.touchEndHandler)
   },
   methods: {
+    touchStartHandler(event) {
+      this.touchStartCoords.x = event.changedTouches[0].clientX
+      this.touchStartCoords.y = event.changedTouches[0].clientY
+    },
+    touchEndHandler(event) {
+      this.touchEndCoords.x = event.changedTouches[0].clientX
+      this.touchEndCoords.y = event.changedTouches[0].clientY
+
+      const xDiff = this.touchEndCoords.x - this.touchStartCoords.x
+      const yDiff = this.touchEndCoords.y - this.touchStartCoords.y
+
+      if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        if (xDiff < 0 && xDiff < -40) {
+          this.emitCloseMenu()
+        }
+      }
+    },
     updateTables() {
       bus.$emit('updateTables')
     },
