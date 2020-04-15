@@ -12,6 +12,7 @@
           <button v-on:click="discountGoodsShown = !discountGoodsShown" class="toggle-button">
             <i aria-hidden="true" :class="[ discountGoodsShown ? 'fa fa-chevron-down' : 'fa fa-chevron-up' ]"></i>
           </button>
+          <span class="badge">{{ filteredDiscountGoods.length }}</span>
         </caption>
         <tbody v-if="discountGoodsShown">
           <tr v-if="discountGoods.length">
@@ -40,6 +41,7 @@
           <button v-on:click="newGoodsShown = !newGoodsShown" class="toggle-button">
             <i aria-hidden="true" :class="[ newGoodsShown ? 'fa fa-chevron-down' : 'fa fa-chevron-up' ]"></i>
           </button>
+          <span class="badge">{{ filteredNewGoods.length }}</span>
         </caption>
         <tbody v-if="newGoodsShown">
           <tr v-if="newGoods.length">
@@ -153,6 +155,7 @@ export default {
     height: 50px;
     display: flex;
     align-items: center;
+    white-space: nowrap;
     .shop {
       font-size: 14px;
       font-weight: 600;
@@ -166,6 +169,15 @@ export default {
       font-weight: 500;
       display: block;
       padding-left: 20px;
+    }
+    .badge {
+      font-size: 14px;
+      font-weight: bold;
+      margin-left: 20px;
+      background: #7d7d7d;
+      color: #fff;
+      border-radius: 2px;
+      padding: 2px 4px;
     }
   }
 }
@@ -213,6 +225,7 @@ tr {
   &.prod-empty td {
     text-align: center;
     background-color: #d20808 !important;
+    white-space: nowrap;
   }
 }
 
