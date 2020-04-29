@@ -66,6 +66,7 @@ import axios from 'axios'
 
 import { bus } from '@/main'
 import filteringHelper from '@/helpers/filteringHelper'
+import timeout from '@/helpers/timeout'
 import Spinner from '@/components/Spinner'
 import FilterPanel from './FilterPanel'
 
@@ -99,9 +100,10 @@ export default {
     $route: 'fetchData',
   },
   methods: {
-    fetchData() {
+    async fetchData() {
       this.loading = true
-      axios
+      await timeout(310)
+      await axios
         .get(`${process.env.VUE_APP_API_BASE_PATH}/${this.$route.params.name}-goods`)
         .then(response => {
           this.loading = false
