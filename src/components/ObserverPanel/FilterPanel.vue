@@ -16,8 +16,8 @@
       <div class="input-controls">
         <button
           v-on:click="resetInput"
+          v-show="filterInput.length > 2"
           class="input-reset"
-          :class="{ 'show': filterInput.length > 2 }"
         >
           <i class="fa fa-times-circle" aria-hidden="true"></i>
         </button>
@@ -239,10 +239,6 @@ export default {
   }
   &-reset {
     margin-left: 6px;
-    display: none;
-    &.show {
-      display: inline-block;
-    }
   }
   &-dropdown {
     margin: 0 6px;

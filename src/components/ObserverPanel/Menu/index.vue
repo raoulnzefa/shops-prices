@@ -1,8 +1,8 @@
 <template>
   <div>
     <ShopsMenu
-    :isOpen="isOpen"
-    @closeMenu="closeMenu"
+      :isOpen="isOpen"
+      @closeMenu="closeMenu"
     />
     <MenuExpandButton
       :isOpen="isOpen"
