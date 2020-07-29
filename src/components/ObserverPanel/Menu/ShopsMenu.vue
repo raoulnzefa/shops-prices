@@ -10,7 +10,7 @@
             <div v-on:click="emitCloseMenu">
               <a :href="href" @click="navigate" class="shop-link beru-color">БЕРУ</a>
               <button v-if="isActive" v-on:click="throttledUpdateTables" class="update-button">
-                <i class="fa fa-refresh" aria-hidden="true"></i>
+                <i class="icon-refresh" aria-hidden="true"></i>
               </button>
             </div>
           </router-link>
@@ -24,7 +24,7 @@
             <div v-on:click="emitCloseMenu">
               <a :href="href" @click="navigate" class="shop-link wildberries-color">WILDBERRIES</a>
               <button v-if="isActive" v-on:click="throttledUpdateTables" class="update-button">
-                <i class="fa fa-refresh" aria-hidden="true"></i>
+                <i class="icon-refresh" aria-hidden="true"></i>
               </button>
             </div>
           </router-link>
@@ -38,7 +38,7 @@
             <div v-on:click="emitCloseMenu">
               <a :href="href" @click="navigate" class="shop-link t-mall-color">T-MALL</a>
               <button v-if="isActive" v-on:click="throttledUpdateTables" class="update-button">
-                <i class="fa fa-refresh" aria-hidden="true"></i>
+                <i class="icon-refresh" aria-hidden="true"></i>
               </button>
             </div>
           </router-link>

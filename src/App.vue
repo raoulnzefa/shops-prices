@@ -19,8 +19,39 @@ export default {
     display: swap;
   }
   src: local('Lucida Sans Unicode'),
-  url('./assets/fonts/Lucida-Sans-Unicode.ttf') format('truetype');
+       url('./assets/fonts/Lucida-Sans-Unicode.ttf') format('truetype');
 }
+
+@font-face {
+  font: {
+    family: 'Icons';
+    weight: normal;
+    style: normal;
+  }
+  src: url('./assets/fonts/Icons.woff2') format('woff2'),
+       url('./assets/fonts/Icons.woff') format('woff');
+}
+   
+[class^='icon-']:before, [class*=' icon-']:before {
+  display: inline-block;
+  font: {
+    family: 'Icons';
+    style: normal;
+    weight: normal;
+  }
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-times-circle:before { content: '\e800'; }
+.icon-check:before { content: '\e801'; }
+.icon-exclamation-circle:before { content: '\e802'; }
+.icon-refresh:before { content: '\e803'; }
+.icon-chevron-up:before { content: '\e804'; }
+.icon-chevron-down:before { content: '\e805'; }
+.icon-filter:before { content: '\f0b0'; }
+.icon-chevron-circle-up:before { content: '\f139'; }
+.icon-chevron-circle-down:before { content: '\f13a'; }
 
 * {
   margin: 0;

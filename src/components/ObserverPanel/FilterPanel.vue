@@ -2,7 +2,7 @@
   <form v-on:submit.prevent class="filter-form">
     <label for="search">
       <span>Фильтр по производителям</span>
-      <i class="fa fa-filter" :class="{ 'active': filterSelectedItems.length }" aria-hidden="true"></i>
+      <i class="icon-filter" :class="{ 'active': filterSelectedItems.length }" aria-hidden="true"></i>
     </label>
     <div ref="input-wrapper" class="input-wrapper">
       <input
@@ -19,14 +19,14 @@
           v-show="filterInput.length > 2"
           class="input-reset"
         >
-          <i class="fa fa-times-circle" aria-hidden="true"></i>
+          <i class="icon-times-circle" aria-hidden="true"></i>
         </button>
         <button
           v-on:click="dropdownIsShown = !dropdownIsShown"
           class="input-dropdown"
         >
           <i
-            :class="[ dropdownIsShown ? 'fa fa-chevron-circle-down' : 'fa fa-chevron-circle-up' ]"
+            :class="[ dropdownIsShown ? 'icon-chevron-circle-down' : 'icon-chevron-circle-up' ]"
             aria-hidden="true"
           >
           </i>
@@ -48,7 +48,7 @@
     <button class="filter-reset" v-on:click="resetFilter">Сбросить</button> 
     <span class="filter-info" :class="{ 'filter-active': filterSelectedItems.length }">
       {{ filterSelectedItems.length ? 'Фильтр включен' : 'Фильтр выключен' }}
-      <i :class="[ filterSelectedItems.length ? 'fa fa-check' : 'fa fa-exclamation-circle' ]"></i>
+      <i :class="[ filterSelectedItems.length ? 'icon-check' : 'icon-exclamation-circle' ]"></i>
     </span>
     <div class="break"></div>
   </form>
@@ -152,7 +152,7 @@ export default {
       margin: 0 20px;
       padding-right: 16px;
       border-right: 1px solid #333333;
-      > .fa-filter {
+      > .icon-filter {
         display: none;
       }
     }
@@ -187,7 +187,7 @@ export default {
     > span {
       display: none;
     }
-    > .fa-filter {
+    > .icon-filter {
       display: inline-block;
     }
   }
@@ -251,7 +251,7 @@ export default {
       justify-content: center;
       > label {
         margin: 0 20px 0 10px;
-        & > .fa-filter {
+        & > .icon-filter {
           color: #7d7d7d;
           &.active {
             color: #2faf3e;

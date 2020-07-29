@@ -10,7 +10,7 @@
           <span :class="[`shop ${$route.params.name}-color`]">{{ shopName }}</span>
           <span class="text">Изменения цен</span>
           <button v-on:click="discountGoodsShown = !discountGoodsShown" class="toggle-button">
-            <i aria-hidden="true" :class="[ discountGoodsShown ? 'fa fa-chevron-down' : 'fa fa-chevron-up' ]"></i>
+            <i aria-hidden="true" :class="[ discountGoodsShown ? 'icon-chevron-down' : 'icon-chevron-up' ]"></i>
           </button>
           <span class="badge">{{ filteredDiscountGoods.length }}</span>
         </caption>
@@ -39,7 +39,7 @@
           <span :class="[`shop ${$route.params.name}-color`]">{{ shopName }}</span>
           <span class="text">Новые товары</span>
           <button v-on:click="newGoodsShown = !newGoodsShown" class="toggle-button">
-            <i aria-hidden="true" :class="[ newGoodsShown ? 'fa fa-chevron-down' : 'fa fa-chevron-up' ]"></i>
+            <i aria-hidden="true" :class="[ newGoodsShown ? 'icon-chevron-down' : 'icon-chevron-up' ]"></i>
           </button>
           <span class="badge">{{ filteredNewGoods.length }}</span>
         </caption>
