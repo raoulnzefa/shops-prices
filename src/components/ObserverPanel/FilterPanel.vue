@@ -141,6 +141,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/scss/other.scss';
+
 .filter {
   &-form {
     background-color: bisque;
@@ -189,7 +191,7 @@ export default {
 @media screen and (max-width: 1056px) {
   .filter-form > label {
     > span {
-      display: none;
+      @include visually-hidden;
     }
     > .icon-filter {
       display: inline-block;
