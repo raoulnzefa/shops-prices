@@ -1,5 +1,5 @@
 <template>
-  <nav ref="sidebar" class="shops-nav" :class="{ 'open': isOpen }">
+  <nav ref="sidebar" id="shopsMenu" class="shops-nav" :class="{ 'open': isOpen }">
     <h2>Магазины</h2>
       <ul class="shops-list">
         <li class="shop-item">
@@ -9,7 +9,7 @@
           >
             <div v-on:click="emitCloseMenu">
               <a :href="href" @click="navigate" class="shop-link beru-color">БЕРУ</a>
-              <button v-if="isActive" v-on:click="throttledUpdateTables" class="update-button">
+              <button v-if="isActive" v-on:click="throttledUpdateTables" class="refresh-button" aria-label="Обновить">
                 <i class="icon-refresh" aria-hidden="true"></i>
               </button>
             </div>
@@ -23,7 +23,7 @@
           >
             <div v-on:click="emitCloseMenu">
               <a :href="href" @click="navigate" class="shop-link wildberries-color">WILDBERRIES</a>
-              <button v-if="isActive" v-on:click="throttledUpdateTables" class="update-button">
+              <button v-if="isActive" v-on:click="throttledUpdateTables" class="refresh-button" aria-label="Обновить">
                 <i class="icon-refresh" aria-hidden="true"></i>
               </button>
             </div>
@@ -37,7 +37,7 @@
           >
             <div v-on:click="emitCloseMenu">
               <a :href="href" @click="navigate" class="shop-link t-mall-color">T-MALL</a>
-              <button v-if="isActive" v-on:click="throttledUpdateTables" class="update-button">
+              <button v-if="isActive" v-on:click="throttledUpdateTables" class="refresh-button" aria-label="Обновить">
                 <i class="icon-refresh" aria-hidden="true"></i>
               </button>
             </div>
@@ -190,7 +190,7 @@ export default {
   }
 }
 
-.update-button {
+.refresh-button {
   background: transparent;
   border: none;
   font-size: inherit;

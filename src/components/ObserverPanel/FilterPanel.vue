@@ -18,12 +18,16 @@
           v-on:click="resetInput"
           v-show="filterInput.length > 2"
           class="input-reset"
+          aria-label="Сбросить ввод"
         >
           <i class="icon-times-circle" aria-hidden="true"></i>
         </button>
         <button
           v-on:click="dropdownIsShown = !dropdownIsShown"
           class="input-dropdown"
+          aria-label="Переключить фильтр"
+          aria-controls="filterByManufacturer"
+          :aria-expanded="dropdownIsShown ? 'true' : 'false'"
         >
           <i
             :class="[ dropdownIsShown ? 'icon-chevron-circle-down' : 'icon-chevron-circle-up' ]"
@@ -32,7 +36,7 @@
           </i>
         </button>
       </div>
-      <ul v-if="dropdownIsShown" class="input-list">
+      <ul v-if="dropdownIsShown" id="filterByManufacturer" class="input-list">
         <li v-for="item in filterSearchItems" :key="item">
           <label class="checkbox">
             <input

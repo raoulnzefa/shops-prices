@@ -9,12 +9,18 @@
         <caption>
           <span :class="[`shop ${$route.params.name}-color`]">{{ shopName }}</span>
           <span class="text">Изменения цен</span>
-          <button v-on:click="discountGoodsShown = !discountGoodsShown" class="toggle-button">
+          <button
+            v-on:click="discountGoodsShown = !discountGoodsShown"
+            class="toggle-button"
+            aria-label="Переключить таблицу"
+            aria-controls="discountGoods"
+            :aria-expanded="discountGoodsShown ? 'true' : 'false'"
+          >
             <i aria-hidden="true" :class="[ discountGoodsShown ? 'icon-chevron-down' : 'icon-chevron-up' ]"></i>
           </button>
           <span class="badge">{{ filteredDiscountGoods.length }}</span>
         </caption>
-        <tbody v-if="discountGoodsShown">
+        <tbody v-if="discountGoodsShown" id="discountGoods">
           <tr v-if="discountGoods.length">
             <th>Товар</th>
             <th>Новая цена</th>
@@ -38,12 +44,18 @@
         <caption>
           <span :class="[`shop ${$route.params.name}-color`]">{{ shopName }}</span>
           <span class="text">Новые товары</span>
-          <button v-on:click="newGoodsShown = !newGoodsShown" class="toggle-button">
+          <button
+            v-on:click="newGoodsShown = !newGoodsShown"
+            class="toggle-button"
+            aria-label="Переключить таблицу"
+            aria-controls="newGoods"
+            :aria-expanded="newGoodsShown ? 'true' : 'false'"
+          >
             <i aria-hidden="true" :class="[ newGoodsShown ? 'icon-chevron-down' : 'icon-chevron-up' ]"></i>
           </button>
           <span class="badge">{{ filteredNewGoods.length }}</span>
         </caption>
-        <tbody v-if="newGoodsShown">
+        <tbody v-if="newGoodsShown" id="newGoods">
           <tr v-if="newGoods.length">
             <th>Товар</th>
             <th>Цена</th>

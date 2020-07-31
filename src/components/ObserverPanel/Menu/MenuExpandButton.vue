@@ -1,6 +1,13 @@
 <template>
-  <button v-on:click="emitToggleMenu" class="menu-expand" :class="{ 'active' : isOpen }">
-    <div class="burger-box">
+  <button
+    v-on:click="emitToggleMenu"
+    class="menu-expand"
+    :class="{ 'active' : isOpen }"
+    aria-label="Переключить меню"
+    aria-controls="shopsMenu"
+    :aria-expanded="isOpen ? 'true' : 'false'"
+  >
+    <div class="burger-box" aria-hidden="true">
       <div class="burger-inner"></div>
     </div>
   </button>
