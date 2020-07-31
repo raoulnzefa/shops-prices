@@ -19,7 +19,8 @@ export default {
     display: swap;
   }
   src: local('Lucida Sans Unicode'),
-       url('./assets/fonts/Lucida-Sans-Unicode.ttf') format('truetype');
+       url('./assets/fonts/Lucida-Sans-Unicode.woff2') format('woff2'),
+       url('./assets/fonts/Lucida-Sans-Unicode.woff') format('woff');
 }
 
 @font-face {
