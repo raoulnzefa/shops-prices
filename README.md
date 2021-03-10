@@ -1,4 +1,6 @@
-# Shop Prices App
+# Shops Prices App
+<img src="preview.jpg" />
+
 Vue, Vue Router, SCSS, JSON Server
 
 ### To be able to run app, you need to take the following steps:
